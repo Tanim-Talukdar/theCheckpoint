@@ -14,33 +14,57 @@ import {
 
 const contactItems = [
   {
+    icon: <FaMapMarkerAlt />,
+    title: "Visit Our Academy",
+    text: "Find us in Mirpur 11, Dhaka",
+    value: "Rising Sun Complex, Benaroshi Polli, Paris Road, Mirpur-10, Dhaka-1216",
+    href: "#contact-form",
+    color: "location",
+  },
+  {
     icon: <FaWhatsapp />,
-    title: "WhatsApp",
+    title: "WhatsApp-1",
     text: "Message us directly",
     value: "+880 1632-78705",
-    href: "https://wa.me/8801XXXXXXXXX",
+    href: "https://wa.me/880163278705",
+    color: "green",
+  },
+  {
+    icon: <FaWhatsapp />,
+    title: "WhatsApp-2",
+    text: "Message us directly",
+    value: "+880 1919-248151",
+    href: "https://wa.me/8801919248151",
     color: "green",
   },
   {
     icon: <FaPhone />,
-    title: "Call Us",
+    title: "Call Us-1",
     text: "Speak with our team",
     value: "+880 1632-78705",
-    href: "tel:+880 1632-78705",
+    href: "tel:+880163278705",
+    color: "red",
+  },
+  {
+    icon: <FaPhone />,
+    title: "Call Us-2",
+    text: "Speak with our team",
+    value: "+880 1919-248151",
+    href: "tel:+8801919248151",
     color: "red",
   },
   {
     icon: <FaEnvelope />,
     title: "Email",
     text: "Send us your questions",
-    value: "hello@example.com",
-    href: "mailto:hello@example.com",
+    value: "dhakaforeignacademy@gmail.com",
+    href: "mailto:dhakaforeignacademy@gmail.com",
     color: "green",
   },
   {
     icon: <FaClock />,
     title: "Office Hours",
-    text: "Paris Road, Mirpur 11, Dhaka , Bangladesh",
+    text: "When you can visit",
     value: "Sat – Thu · 10AM – 8PM",
     href: "#contact-form",
     color: "red",
@@ -269,18 +293,18 @@ export default function ContactPage() {
 
               <div className="flex items-start gap-3">
 
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#BC002D]/8 text-[#BC002D]">
+                <div className="flex h-18 w-18 shrink-0 items-center justify-center rounded-xl bg-[#BC002D]/8 text-[#BC002D]">
                   <FaMapMarkerAlt />
                 </div>
 
                 <div>
 
-                  <p className="text-sm font-black">
+                  <p className="text-lg font-black">
                     Visit Our Office
                   </p>
 
-                  <p className="mt-1 text-xs leading-5 text-gray-500">
-                    Your academy address goes here, Bangladesh.
+                  <p className="mt-1 text- leading-5 text-gray-500">
+                    Rising Sun Complex, Benaroshi Polli, Paris Road, Mirpur-10, Dhaka-1216
                   </p>
 
                 </div>
@@ -584,7 +608,7 @@ export default function ContactPage() {
             </p>
 
             <motion.a
-              href="https://wa.me/8801XXXXXXXXX"
+              href="https://wa.me/880163278705"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{
@@ -625,11 +649,217 @@ function ContactCard({
   href,
   color,
 }) {
+
+  const isLocation = color === "location";
   const isGreen = color === "green";
 
+
+  /* =====================================================
+     SPECIAL LOCATION CARD
+  ===================================================== */
+
+  if (isLocation) {
+    return (
+      <motion.a
+        href={href}
+        whileHover={{
+          y: -6,
+          scale: 1.01,
+        }}
+        transition={{
+          duration: 0.25,
+        }}
+        className="
+group 
+relative 
+overflow-hidden 
+rounded-[1.75rem] 
+border 
+border-[#006A4E]/20 
+bg-gradient-to-br 
+from-[#006A4E] 
+via-[#2F6F5E] 
+to-[#e97070] 
+p-6 
+shadow-[0_15px_45px_rgba(0,106,78,0.14)] 
+sm:col-span-2 
+lg:col-span-2
+        "
+      >
+
+        {/* Decorative glow */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -right-16
+            -top-16
+            h-48
+            w-48
+            rounded-full
+            bg-white/10
+            blur-[60px]
+          "
+        />
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -bottom-20
+            -left-10
+            h-40
+            w-40
+            rounded-full
+            bg-[#BC002D]/15
+            blur-[60px]
+          "
+        />
+
+
+        {/* Content */}
+
+        <div className="relative flex h-full flex-col justify-between">
+
+          <div>
+
+            {/* Icon */}
+
+            <div
+              className="
+                flex
+                h-14
+                w-14
+                items-center
+                justify-center
+                rounded-2xl
+                border
+                border-white/15
+                bg-white/10
+                text-xl
+                text-white
+                shadow-lg
+                backdrop-blur-sm
+                transition-transform
+                duration-300
+                group-hover:scale-110
+              "
+            >
+              {icon}
+            </div>
+
+
+            {/* Label */}
+
+            <p
+              className="
+                mt-6
+                text-[10px]
+                font-bold
+                uppercase
+                tracking-[0.2em]
+                text-white/50
+              "
+            >
+              Our Location
+            </p>
+
+
+            {/* Title */}
+
+            <h3
+              className="
+                mt-1
+                text-xl
+                font-black
+                tracking-tight
+                text-white
+              "
+            >
+              {title}
+            </h3>
+
+
+            {/* Description */}
+
+            <p
+              className="
+                mt-2
+                max-w-md
+                text-sm
+                leading-6
+                text-white/60
+              "
+            >
+              {text}
+            </p>
+
+          </div>
+
+
+          {/* Address */}
+
+          <div
+            className="
+              
+              mt-7
+              rounded-2xl
+              border
+              border-white/10
+              bg-black/10
+              px-4
+              py-3.5
+              backdrop-blur-sm
+            "
+          >
+
+            <p
+              className="
+                text-sm
+                font-bold
+                leading-5
+                text-white/85
+              "
+            >
+              {value}
+            </p>
+
+          </div>
+
+        </div>
+
+      </motion.a>
+    );
+  }
+
+
+  /* =====================================================
+     NORMAL CONTACT CARD
+  ===================================================== */
+
   const iconClass = isGreen
-    ? "flex h-10 w-10 items-center justify-center rounded-xl bg-[#006A4E]/10 text-[#006A4E]"
-    : "flex h-10 w-10 items-center justify-center rounded-xl bg-[#BC002D]/10 text-[#BC002D]";
+    ? `
+      flex
+      h-10
+      w-10
+      items-center
+      justify-center
+      rounded-xl
+      bg-[#006A4E]/10
+      text-[#006A4E]
+    `
+    : `
+      flex
+      h-10
+      w-10
+      items-center
+      justify-center
+      rounded-xl
+      bg-[#BC002D]/10
+      text-[#BC002D]
+    `;
+
 
   return (
     <motion.a
@@ -647,7 +877,18 @@ function ContactCard({
       whileHover={{
         y: -5,
       }}
-      className="group rounded-2xl border border-gray-200/70 bg-white p-5 shadow-[0_6px_25px_rgba(0,0,0,0.025)] transition-shadow duration-300 hover:shadow-[0_15px_35px_rgba(0,0,0,0.06)]"
+      className="
+        group
+        rounded-2xl
+        border
+        border-gray-200/70
+        bg-white
+        p-5
+        shadow-[0_6px_25px_rgba(0,0,0,0.025)]
+        transition-shadow
+        duration-300
+        hover:shadow-[0_15px_35px_rgba(0,0,0,0.06)]
+      "
     >
 
       <div className={iconClass}>
@@ -662,7 +903,17 @@ function ContactCard({
         {text}
       </p>
 
-      <p className="mt-3 truncate text-xs font-bold text-gray-600 transition-colors group-hover:text-[#006A4E]">
+      <p
+        className="
+          mt-3
+          truncate
+          text-xs
+          font-bold
+          text-gray-600
+          transition-colors
+          group-hover:text-[#006A4E]
+        "
+      >
         {value}
       </p>
 

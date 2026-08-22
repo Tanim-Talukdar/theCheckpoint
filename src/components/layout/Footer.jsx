@@ -40,25 +40,127 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gray-950 text-white">
+    <footer
+      className="
+        relative
+        overflow-hidden
+        bg-[#071b18]
+        text-white
+      "
+    >
 
       {/* =========================================
-          BACKGROUND GLOW
+          BACKGROUND
       ========================================== */}
 
-      <div className="pointer-events-none absolute -left-40 top-0 h-80 w-80 rounded-full bg-[#BC002D]/10 blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0">
 
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-80 w-80 rounded-full bg-[#006A4E]/10 blur-[120px]" />
+        {/* Emerald glow */}
+
+        <div
+          className="
+            absolute
+            -left-40
+            -top-40
+            h-[500px]
+            w-[500px]
+            rounded-full
+            bg-[#006A4E]/35
+            blur-[150px]
+          "
+        />
+
+        {/* Red glow */}
+
+        <div
+          className="
+            absolute
+            right-[-180px]
+            top-[-120px]
+            h-[420px]
+            w-[420px]
+            rounded-full
+            bg-[#BC002D]/20
+            blur-[150px]
+          "
+        />
+
+        {/* Deep green glow */}
+
+        <div
+          className="
+            absolute
+            bottom-[-200px]
+            left-[25%]
+            h-[500px]
+            w-[500px]
+            rounded-full
+            bg-[#008f6b]/15
+            blur-[160px]
+          "
+        />
+
+        {/* Navy glow */}
+
+        <div
+          className="
+            absolute
+            bottom-0
+            right-[15%]
+            h-[350px]
+            w-[350px]
+            rounded-full
+            bg-[#102a43]/30
+            blur-[130px]
+          "
+        />
+
+      </div>
+
+
+      {/* =========================================
+          TOP ACCENT
+      ========================================== */}
+
+      <div
+        className="
+          absolute
+          left-0
+          right-0
+          top-0
+          h-[2px]
+          bg-gradient-to-r
+          from-[#BC002D]
+          via-[#f5f5f0]
+          to-[#006A4E]
+        "
+      />
 
 
       {/* =========================================
           MAIN FOOTER
       ========================================== */}
 
-      <div className="relative mx-auto max-w-7xl px-5 pb-8 pt-16 sm:px-8 sm:pt-20">
+      <div
+        className="
+          relative
+          mx-auto
+          max-w-7xl
+          px-5
+          pb-8
+          pt-16
+          sm:px-8
+          sm:pt-20
+        "
+      >
 
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-
+        <div
+          className="
+            grid
+            gap-12
+            lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]
+          "
+        >
 
           {/* =====================================
               BRAND
@@ -84,8 +186,9 @@ export default function Footer() {
                   rounded-2xl
                   border
                   border-white/10
-                  bg-white
+                  bg-[#f8f7f1]
                   p-1.5
+                  shadow-[0_8px_30px_rgba(0,0,0,0.2)]
                   transition-all
                   duration-300
                   group-hover:scale-105
@@ -105,11 +208,27 @@ export default function Footer() {
 
               <div>
 
-                <h2 className="text-base font-extrabold tracking-tight text-white">
+                <h2
+                  className="
+                    text-base
+                    font-extrabold
+                    tracking-tight
+                    text-[#f8f7f1]
+                  "
+                >
                   Dhaka Foreign Academy
                 </h2>
 
-                <p className="mt-1 text-[8px] font-bold uppercase tracking-[0.25em] text-white/35">
+                <p
+                  className="
+                    mt-1
+                    text-[8px]
+                    font-bold
+                    uppercase
+                    tracking-[0.25em]
+                    text-[#d8e4df]/45
+                  "
+                >
                   Language & Education
                 </p>
 
@@ -118,7 +237,14 @@ export default function Footer() {
             </a>
 
 
-            <p className="mt-6 text-sm leading-7 text-white/45">
+            <p
+              className="
+                mt-6
+                text-sm
+                leading-7
+                text-[#d8e4df]/60
+              "
+            >
               Japanese language coaching and Japan-focused guidance
               for students and professionals in Bangladesh.
             </p>
@@ -132,13 +258,29 @@ export default function Footer() {
                 🇧🇩
               </span>
 
-              <div className="h-px w-8 bg-white/15" />
+              <div
+                className="
+                  h-px
+                  w-8
+                  bg-gradient-to-r
+                  from-[#BC002D]
+                  to-white/20
+                "
+              />
 
               <span className="text-xl">
                 🇯🇵
               </span>
 
-              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/30">
+              <span
+                className="
+                  text-[10px]
+                  font-bold
+                  uppercase
+                  tracking-[0.18em]
+                  text-[#d8e4df]/40
+                "
+              >
                 Bangladesh → Japan
               </span>
 
@@ -152,7 +294,7 @@ export default function Footer() {
               {/* Facebook */}
 
               <a
-                href="https://facebook.com/YOUR_PAGE"
+                href="https://www.facebook.com/profile.php?id=100094932286301"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -165,8 +307,8 @@ export default function Footer() {
                   rounded-xl
                   border
                   border-white/10
-                  bg-white/[0.04]
-                  text-white/45
+                  bg-white/[0.05]
+                  text-white/55
                   transition-all
                   duration-300
                   hover:-translate-y-1
@@ -195,8 +337,8 @@ export default function Footer() {
                   rounded-xl
                   border
                   border-white/10
-                  bg-white/[0.04]
-                  text-white/45
+                  bg-white/[0.05]
+                  text-white/55
                   transition-all
                   duration-300
                   hover:-translate-y-1
@@ -212,7 +354,7 @@ export default function Footer() {
               {/* WhatsApp */}
 
               <a
-                href="https://wa.me/8801XXXXXXXXX"
+                href="https://wa.me/88001919248151"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -225,14 +367,14 @@ export default function Footer() {
                   rounded-xl
                   border
                   border-white/10
-                  bg-white/[0.04]
-                  text-white/45
+                  bg-white/[0.05]
+                  text-white/55
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:border-green-400/30
-                  hover:bg-green-500/10
-                  hover:text-green-400
+                  hover:border-green-300/30
+                  hover:bg-green-400/10
+                  hover:text-green-300
                 "
               >
                 <FaWhatsapp />
@@ -249,7 +391,13 @@ export default function Footer() {
 
           <div>
 
-            <h3 className="text-sm font-bold text-white">
+            <h3
+              className="
+                text-sm
+                font-bold
+                text-[#f8f7f1]
+              "
+            >
               Explore
             </h3>
 
@@ -266,11 +414,11 @@ export default function Footer() {
                     items-center
                     gap-2
                     text-sm
-                    text-white/40
+                    text-[#d8e4df]/50
                     transition-all
                     duration-200
                     hover:translate-x-1
-                    hover:text-white
+                    hover:text-[#f8f7f1]
                   "
                 >
 
@@ -304,7 +452,13 @@ export default function Footer() {
 
           <div>
 
-            <h3 className="text-sm font-bold text-white">
+            <h3
+              className="
+                text-sm
+                font-bold
+                text-[#f8f7f1]
+              "
+            >
               Academy
             </h3>
 
@@ -321,11 +475,11 @@ export default function Footer() {
                     items-center
                     gap-2
                     text-sm
-                    text-white/40
+                    text-[#d8e4df]/50
                     transition-all
                     duration-200
                     hover:translate-x-1
-                    hover:text-white
+                    hover:text-[#f8f7f1]
                   "
                 >
 
@@ -359,20 +513,33 @@ export default function Footer() {
 
           <div>
 
-            <h3 className="text-sm font-bold text-white">
+            <h3
+              className="
+                text-sm
+                font-bold
+                text-[#f8f7f1]
+              "
+            >
               Get in touch
             </h3>
 
-            <p className="mt-4 text-sm leading-6 text-white/40">
+            <p
+              className="
+                mt-4
+                text-sm
+                leading-6
+                text-[#d8e4df]/55
+              "
+            >
               Have questions about courses, JLPT, visa processing
               or studying in Japan? Our team is here to help.
             </p>
 
 
-            {/* Phone */}
+            {/* PHONE 1 */}
 
             <a
-              href="tel:+880 1632-78705"
+              href="tel:+880163278705"
               className="
                 group
                 mt-5
@@ -382,12 +549,15 @@ export default function Footer() {
                 rounded-2xl
                 border
                 border-white/10
-                bg-white/[0.04]
+                bg-gradient-to-r
+                from-[#BC002D]/10
+                to-white/[0.03]
                 p-3.5
                 transition-all
                 duration-300
+                hover:-translate-y-0.5
                 hover:border-[#BC002D]/30
-                hover:bg-[#BC002D]/5
+                hover:bg-[#BC002D]/15
               "
             >
 
@@ -400,8 +570,8 @@ export default function Footer() {
                   items-center
                   justify-center
                   rounded-xl
-                  bg-[#BC002D]/10
-                  text-[#BC002D]
+                  bg-[#BC002D]/15
+                  text-[#ff6680]
                 "
               >
                 <FaPhone className="text-xs" />
@@ -409,11 +579,26 @@ export default function Footer() {
 
               <div>
 
-                <p className="text-[9px] font-bold uppercase tracking-wider text-white/25">
+                <p
+                  className="
+                    text-[9px]
+                    font-bold
+                    uppercase
+                    tracking-wider
+                    text-white/30
+                  "
+                >
                   Call Us
                 </p>
 
-                <p className="mt-0.5 text-sm font-bold text-white/75">
+                <p
+                  className="
+                    mt-0.5
+                    text-sm
+                    font-bold
+                    text-white/80
+                  "
+                >
                   +880 1632-78705
                 </p>
 
@@ -422,39 +607,140 @@ export default function Footer() {
             </a>
 
 
-            {/* Email */}
+            {/* PHONE 2 */}
 
             <a
-              href="mailto:info@example.com"
+              href="tel:+8801919248151"
               className="
                 group
                 mt-2
                 flex
                 items-center
                 gap-3
+                rounded-2xl
+                border
+                border-white/10
+                bg-gradient-to-r
+                from-[#006A4E]/20
+                to-white/[0.03]
+                p-3.5
+                transition-all
+                duration-300
+                hover:-translate-y-0.5
+                hover:border-[#008f6b]/40
+                hover:bg-[#006A4E]/30
+              "
+            >
+
+              <span
+                className="
+                  flex
+                  h-9
+                  w-9
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#006A4E]/35
+                  text-green-300
+                "
+              >
+                <FaPhone className="text-xs" />
+              </span>
+
+              <div>
+
+                <p
+                  className="
+                    text-[9px]
+                    font-bold
+                    uppercase
+                    tracking-wider
+                    text-white/30
+                  "
+                >
+                  WhatsApp / Phone
+                </p>
+
+                <p
+                  className="
+                    mt-0.5
+                    text-sm
+                    font-bold
+                    text-white/80
+                  "
+                >
+                  +880 1919-248151
+                </p>
+
+              </div>
+
+            </a>
+
+
+            {/* EMAIL 1 */}
+
+            <a
+              href="mailto:info@example.com"
+              className="
+                group
+                mt-3
+                flex
+                items-center
+                gap-3
                 rounded-xl
                 p-2
                 text-sm
-                text-white/40
+                text-[#d8e4df]/50
                 transition-colors
                 hover:text-white
               "
             >
 
-              <FaEnvelope className="text-xs text-white/30" />
+              <FaEnvelope
+                className="
+                  text-xs
+                  text-[#d8e4df]/35
+                "
+              />
 
-              info@example.com
+              <span>
+                dhakaforeignacademy@gmail.com
+              </span>
 
             </a>
 
 
-            {/* Location */}
 
-            <div className="mt-2 flex items-center gap-3 px-2 text-sm text-white/40">
 
-              <FaMapMarkerAlt className="text-xs text-white/30" />
 
-              Paris Road, Mirpur 11,Dhaka,Bangladesh
+            {/* LOCATION */}
+
+            <div
+              className="
+                mt-2
+                flex
+                items-start
+                gap-3
+                px-2
+                text-sm
+                leading-6
+                text-[#d8e4df]/50
+              "
+            >
+
+              <FaMapMarkerAlt
+                className="
+                  mt-1
+                  shrink-0
+                  text-xs
+                  text-[#d8e4df]/35
+                "
+              />
+
+              <span>
+                Rising Sun Complex, Benaroshi Polli, Paris Road, Mirpur-10, Dhaka-1216
+              </span>
 
             </div>
 
@@ -467,16 +753,34 @@ export default function Footer() {
             DIVIDER
         ========================================== */}
 
-        <div className="my-12 h-px bg-white/10" />
+        <div
+          className="
+            my-12
+            h-px
+            bg-gradient-to-r
+            from-transparent
+            via-white/15
+            to-transparent
+          "
+        />
 
 
         {/* =========================================
             BOTTOM
         ========================================== */}
 
-        <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+        <div
+          className="
+            flex
+            flex-col
+            gap-5
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+          "
+        >
 
-          <p className="text-xs text-white/25">
+          <p className="text-xs text-[#d8e4df]/30">
             © {new Date().getFullYear()} Dhaka Foreign Academy.
             All rights reserved.
           </p>
@@ -486,14 +790,24 @@ export default function Footer() {
 
             <a
               href="/privacy"
-              className="text-xs text-white/25 transition-colors hover:text-white/60"
+              className="
+                text-xs
+                text-[#d8e4df]/30
+                transition-colors
+                hover:text-white/70
+              "
             >
               Privacy Policy
             </a>
 
             <a
               href="/terms"
-              className="text-xs text-white/25 transition-colors hover:text-white/60"
+              className="
+                text-xs
+                text-[#d8e4df]/30
+                transition-colors
+                hover:text-white/70
+              "
             >
               Terms
             </a>
@@ -517,11 +831,12 @@ export default function Footer() {
                 rounded-xl
                 border
                 border-white/10
-                bg-white/[0.04]
-                text-white/40
+                bg-white/[0.05]
+                text-white/45
                 transition-all
                 duration-300
                 hover:-translate-y-1
+                hover:border-white/20
                 hover:bg-white/10
                 hover:text-white
               "

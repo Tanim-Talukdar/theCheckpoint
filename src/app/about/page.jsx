@@ -1,7 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+
+import "swiper/css";
+
 import {
+  FaArrowLeft,
   FaArrowRight,
   FaBookOpen,
   FaCheck,
@@ -15,32 +22,52 @@ import {
 
 /* =========================================================
    TEACHERS
+   YOUR ORIGINAL NAMES / ROLES / IMAGE PATHS
 ========================================================= */
 
 const teachers = [
   {
-    name: "Teacher Name",
-    role: "Japanese Language Instructor",
-    experience: "Japanese Language Instructor",
-    image: "/teachers/teacher-1.webp",
-    description:
-      "Focused on building strong Japanese fundamentals, practical communication and student confidence.",
+    name: "MILLAT HOSEN",
+    role: "fOUNDER & CHAIRMAN",
+    image: "/about/teacher/teacher1.webp",
   },
   {
-    name: "Teacher Name",
-    role: "JLPT Instructor",
-    experience: "JLPT Preparation",
-    image: "/teachers/teacher-2.webp",
-    description:
-      "Helps students prepare for JLPT through structured lessons, practice and exam-focused guidance.",
+    name: "MD MINHAZ MOLLICK",
+    role: "MANAGING DIRECTOR",
+    image: "/about/teacher/teacher2.webp",
   },
   {
-    name: "Teacher Name",
+    name: "SARIF MD MAHMUDUL HASAN",
     role: "Japanese Language Teacher",
-    experience: "Language & Conversation",
-    image: "/teachers/teacher-3.webp",
-    description:
-      "Focuses on speaking practice, listening and helping students use Japanese naturally.",
+    image: "/about/teacher/teacher3.webp",
+  },
+];
+
+/* =========================================================
+   STAFF
+   YOUR ORIGINAL NAMES / ROLES / IMAGE PATHS
+========================================================= */
+
+const staff = [
+  {
+    name: "MD TANVIR HOSSAIN",
+    role: "Senior Japanese Language Instructor ",
+    image: "about/staff/staff1.webp",
+  },
+  {
+    name: "Lemon khaki",
+    role: "Assistant Japanese Language Instructor",
+    image: "about/staff/staff2.webp",
+  },
+  {
+    name: "MD. HIMEL AHMED ALIF",
+    role: "IT & Documentation Head Officer",
+    image: "about/staff/staff3.webp",
+  },
+  {
+    name: "SABBIR HOSAIN",
+    role: "Senior It Executive Officer",
+    image: "about/staff/staff4.webp",
   },
 ];
 
@@ -138,6 +165,7 @@ const fadeUp = {
     opacity: 0,
     y: 35,
   },
+
   visible: {
     opacity: 1,
     y: 0,
@@ -150,6 +178,7 @@ const fadeUp = {
 
 const stagger = {
   hidden: {},
+
   visible: {
     transition: {
       staggerChildren: 0.1,
@@ -162,6 +191,9 @@ const stagger = {
 ========================================================= */
 
 export default function AboutPage() {
+  const teacherSwiperRef = useRef(null);
+  const staffSwiperRef = useRef(null);
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#fafafa] text-gray-900">
 
@@ -183,7 +215,7 @@ export default function AboutPage() {
         "
       >
 
-        {/* Red glow */}
+        {/* RED GLOW */}
 
         <motion.div
           className="
@@ -208,7 +240,7 @@ export default function AboutPage() {
           }}
         />
 
-        {/* Green glow */}
+        {/* GREEN GLOW */}
 
         <motion.div
           className="
@@ -235,28 +267,66 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl">
 
-          {/* Bangladesh → Japan */}
+          {/* BANGLADESH → JAPAN */}
 
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-2 shadow-sm"
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
+            className="
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              border
+              border-gray-200
+              bg-white
+              px-3
+              py-2
+              shadow-sm
+            "
           >
             <span className="text-base">🇧🇩</span>
 
-            <span className="text-gray-300">→</span>
+            <span className="text-gray-300">
+              →
+            </span>
 
             <span className="text-base">🇯🇵</span>
 
-            <span className="ml-1 text-[9px] font-bold uppercase tracking-[0.16em] text-gray-400">
+            <span
+              className="
+                ml-1
+                text-[9px]
+                font-bold
+                uppercase
+                tracking-[0.16em]
+                text-gray-400
+              "
+            >
               Our Academy
             </span>
           </motion.div>
 
-          {/* Hero content */}
+          {/* HERO CONTENT */}
 
-          <div className="mt-7 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div
+            className="
+              mt-7
+              grid
+              gap-10
+              lg:grid-cols-[1.2fr_0.8fr]
+              lg:items-center
+            "
+          >
 
             {/* LEFT */}
 
@@ -319,8 +389,6 @@ export default function AboutPage() {
                 practical learning, JLPT preparation and helping students
                 build a clear path toward their goals in Japan.
               </p>
-
-              {/* Buttons */}
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
 
@@ -433,8 +501,6 @@ export default function AboutPage() {
                   "
                 />
 
-                {/* Image overlay */}
-
                 <div
                   className="
                     absolute
@@ -449,17 +515,28 @@ export default function AboutPage() {
                     pt-20
                   "
                 >
-                  <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/60">
+
+                  <p
+                    className="
+                      text-[9px]
+                      font-bold
+                      uppercase
+                      tracking-[0.18em]
+                      text-white/60
+                    "
+                  >
                     Our Mission
                   </p>
 
                   <p className="mt-1 text-lg font-black text-white">
                     Learn. Grow. Go further.
                   </p>
+
                 </div>
+
               </div>
 
-              {/* Floating card */}
+              {/* FLOATING CARD */}
 
               <motion.div
                 animate={{
@@ -524,6 +601,7 @@ export default function AboutPage() {
           </div>
 
         </div>
+
       </section>
 
       {/* =====================================================
@@ -562,7 +640,7 @@ export default function AboutPage() {
           >
 
             <img
-              src="/about/academy.webp"
+              src="/about/images3.webp"
               alt="Our Japanese language academy"
               className="
                 h-[360px]
@@ -586,7 +664,15 @@ export default function AboutPage() {
               "
             >
 
-              <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">
+              <p
+                className="
+                  text-[9px]
+                  font-bold
+                  uppercase
+                  tracking-widest
+                  text-gray-400
+                "
+              >
                 Our Purpose
               </p>
 
@@ -607,7 +693,15 @@ export default function AboutPage() {
             }}
           >
 
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#BC002D]">
+            <p
+              className="
+                text-xs
+                font-bold
+                uppercase
+                tracking-[0.18em]
+                text-[#BC002D]
+              "
+            >
               Who We Are
             </p>
 
@@ -644,6 +738,7 @@ export default function AboutPage() {
           </motion.div>
 
         </div>
+
       </section>
 
       {/* =====================================================
@@ -660,116 +755,216 @@ export default function AboutPage() {
             text="Supportive instructors helping students build Japanese step by step."
           />
 
-          <motion.div
-            className="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-3"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{
-              once: true,
-              amount: 0.1,
-            }}
-          >
+          <div className="relative mt-9">
 
-            {teachers.map((teacher, index) => (
-              <motion.article
-                key={index}
-                variants={fadeUp}
+            <Swiper
+              modules={[Autoplay]}
+              onSwiper={(swiper) => {
+                teacherSwiperRef.current = swiper;
+              }}
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop={teachers.length > 1}
+              speed={1000}
+              spaceBetween={20}
+              slidesPerView={1}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1.5,
+                },
+                768: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+
+              {teachers.map((teacher, index) => (
+                <SwiperSlide key={index}>
+                  <TeacherCard teacher={teacher} />
+                </SwiperSlide>
+              ))}
+
+            </Swiper>
+
+            {/* TEACHER ARROWS */}
+
+            <div className="mt-6 flex justify-end gap-2">
+
+              <button
+                type="button"
+                onClick={() =>
+                  teacherSwiperRef.current?.slidePrev()
+                }
                 className="
-                  group
-                  overflow-hidden
-                  rounded-[1.75rem]
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
                   border
-                  border-gray-200/70
+                  border-gray-200
                   bg-white
-                  shadow-[0_8px_30px_rgba(0,0,0,0.03)]
+                  text-gray-700
+                  shadow-sm
                   transition-all
-                  duration-300
-                  hover:-translate-y-2
-                  hover:shadow-[0_20px_45px_rgba(0,0,0,0.07)]
+                  hover:border-[#BC002D]
+                  hover:bg-[#BC002D]
+                  hover:text-white
                 "
+                aria-label="Previous teacher"
               >
+                <FaArrowLeft className="text-xs" />
+              </button>
 
-                <div className="relative h-[320px] overflow-hidden bg-gray-100">
+              <button
+                type="button"
+                onClick={() =>
+                  teacherSwiperRef.current?.slideNext()
+                }
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-gray-900
+                  text-white
+                  shadow-sm
+                  transition-all
+                  hover:bg-[#006A4E]
+                "
+                aria-label="Next teacher"
+              >
+                <FaArrowRight className="text-xs" />
+              </button>
 
-                  <img
-                    src={teacher.image}
-                    alt={teacher.name}
-                    className="
-                      h-full
-                      w-full
-                      object-cover
-                      transition-transform
-                      duration-700
-                      group-hover:scale-105
-                    "
-                  />
+            </div>
 
-                  <div className="
-                    absolute
-                    inset-x-0
-                    bottom-0
-                    h-32
-                    bg-gradient-to-t
-                    from-black/60
-                    to-transparent
-                  " />
-
-                  <div className="absolute bottom-5 left-5">
-
-                    <p className="text-lg font-black text-white">
-                      {teacher.name}
-                    </p>
-
-                    <p className="
-                      mt-1
-                      text-[10px]
-                      font-bold
-                      uppercase
-                      tracking-wider
-                      text-white/70
-                    ">
-                      {teacher.role}
-                    </p>
-
-                  </div>
-
-                </div>
-
-                <div className="p-5">
-
-                  <div className="
-                    inline-flex
-                    rounded-full
-                    bg-[#006A4E]/8
-                    px-3
-                    py-1.5
-                    text-[9px]
-                    font-bold
-                    uppercase
-                    tracking-wider
-                    text-[#006A4E]
-                  ">
-                    {teacher.experience}
-                  </div>
-
-                  <p className="
-                    mt-4
-                    text-sm
-                    leading-6
-                    text-gray-500
-                  ">
-                    {teacher.description}
-                  </p>
-
-                </div>
-
-              </motion.article>
-            ))}
-
-          </motion.div>
+          </div>
 
         </div>
+
+      </section>
+
+      {/* =====================================================
+          STAFF
+      ===================================================== */}
+
+      <section className="bg-white px-5 py-16 sm:px-8 lg:py-24">
+
+        <div className="mx-auto max-w-7xl">
+
+          <SectionHeading
+            eyebrow="Our Staff"
+            title="The team supporting your journey"
+            text="Meet the people who help keep our academy and student experience running smoothly."
+          />
+
+          <div className="relative mt-9">
+
+            <Swiper
+              modules={[Autoplay]}
+              onSwiper={(swiper) => {
+                staffSwiperRef.current = swiper;
+              }}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop={staff.length > 1}
+              speed={1000}
+              spaceBetween={20}
+              slidesPerView={1}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1.5,
+                },
+                768: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+
+              {staff.map((member, index) => (
+                <SwiperSlide key={index}>
+                  <StaffCard member={member} />
+                </SwiperSlide>
+              ))}
+
+            </Swiper>
+
+            {/* STAFF ARROWS */}
+
+            <div className="mt-6 flex justify-end gap-2">
+
+              <button
+                type="button"
+                onClick={() =>
+                  staffSwiperRef.current?.slidePrev()
+                }
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-gray-200
+                  bg-white
+                  text-gray-700
+                  shadow-sm
+                  transition-all
+                  hover:border-[#006A4E]
+                  hover:bg-[#006A4E]
+                  hover:text-white
+                "
+                aria-label="Previous staff member"
+              >
+                <FaArrowLeft className="text-xs" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  staffSwiperRef.current?.slideNext()
+                }
+                className="
+                  flex
+                  h-11
+                  w-11
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-gray-900
+                  text-white
+                  shadow-sm
+                  transition-all
+                  hover:bg-[#BC002D]
+                "
+                aria-label="Next staff member"
+              >
+                <FaArrowRight className="text-xs" />
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </section>
 
       {/* =====================================================
@@ -812,6 +1007,7 @@ export default function AboutPage() {
           </motion.div>
 
         </div>
+
       </section>
 
       {/* =====================================================
@@ -870,34 +1066,24 @@ export default function AboutPage() {
                   "
                 />
 
-                <div className="
-                  absolute
-                  inset-0
-                  bg-gradient-to-t
-                  from-black/70
-                  via-black/10
-                  to-transparent
-                " />
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/70
+                    via-black/10
+                    to-transparent
+                  "
+                />
 
-                <div className="
-                  absolute
-                  bottom-5
-                  left-4
-                  right-4
-                ">
+                <div className="absolute bottom-5 left-4 right-4">
 
                   <h3 className="text-sm font-black text-white sm:text-base">
                     {item.title}
                   </h3>
 
-                  <p className="
-                    mt-1.5
-                    hidden
-                    text-xs
-                    leading-5
-                    text-white/70
-                    sm:block
-                  ">
+                  <p className="mt-1.5 hidden text-xs leading-5 text-white/70 sm:block">
                     {item.text}
                   </p>
 
@@ -909,22 +1095,25 @@ export default function AboutPage() {
           </motion.div>
 
         </div>
+
       </section>
 
       {/* =====================================================
-          TEACHING VALUES
+          VALUES
       ===================================================== */}
 
       <section className="bg-white px-5 py-16 sm:px-8 lg:py-24">
 
         <div className="mx-auto max-w-7xl">
 
-          <div className="
-            grid
-            gap-10
-            lg:grid-cols-[0.8fr_1.2fr]
-            lg:items-center
-          ">
+          <div
+            className="
+              grid
+              gap-10
+              lg:grid-cols-[0.8fr_1.2fr]
+              lg:items-center
+            "
+          >
 
             <motion.div
               variants={fadeUp}
@@ -935,32 +1124,31 @@ export default function AboutPage() {
               }}
             >
 
-              <p className="
-                text-xs
-                font-bold
-                uppercase
-                tracking-[0.18em]
-                text-[#006A4E]
-              ">
+              <p
+                className="
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.18em]
+                  text-[#006A4E]
+                "
+              >
                 Our Approach
               </p>
 
-              <h2 className="
-                mt-3
-                text-3xl
-                font-black
-                tracking-tight
-                sm:text-4xl
-              ">
+              <h2
+                className="
+                  mt-3
+                  text-3xl
+                  font-black
+                  tracking-tight
+                  sm:text-4xl
+                "
+              >
                 A simple approach to better learning.
               </h2>
 
-              <p className="
-                mt-5
-                text-sm
-                leading-7
-                text-gray-500
-              ">
+              <p className="mt-5 text-sm leading-7 text-gray-500">
                 We believe students learn better when they understand
                 why they are learning something and how it connects
                 to their goals.
@@ -990,10 +1178,11 @@ export default function AboutPage() {
           </div>
 
         </div>
+
       </section>
 
       {/* =====================================================
-          FINAL CTA
+          CTA
       ===================================================== */}
 
       <section className="px-5 pb-16 pt-8 sm:px-8 lg:pb-20">
@@ -1025,29 +1214,33 @@ export default function AboutPage() {
           }}
         >
 
-          <div className="
-            pointer-events-none
-            absolute
-            -left-20
-            -top-20
-            h-52
-            w-52
-            rounded-full
-            bg-[#BC002D]/20
-            blur-[90px]
-          " />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -left-20
+              -top-20
+              h-52
+              w-52
+              rounded-full
+              bg-[#BC002D]/20
+              blur-[90px]
+            "
+          />
 
-          <div className="
-            pointer-events-none
-            absolute
-            -bottom-20
-            -right-20
-            h-52
-            w-52
-            rounded-full
-            bg-[#006A4E]/20
-            blur-[90px]
-          " />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              -bottom-20
+              -right-20
+              h-52
+              w-52
+              rounded-full
+              bg-[#006A4E]/20
+              blur-[90px]
+            "
+          />
 
           <div className="relative">
 
@@ -1061,25 +1254,29 @@ export default function AboutPage() {
               <span className="text-xl">🇯🇵</span>
             </div>
 
-            <h2 className="
-              mt-4
-              text-2xl
-              font-black
-              tracking-tight
-              text-white
-              sm:text-3xl
-            ">
+            <h2
+              className="
+                mt-4
+                text-2xl
+                font-black
+                tracking-tight
+                text-white
+                sm:text-3xl
+              "
+            >
               Ready to start your Japanese journey?
             </h2>
 
-            <p className="
-              mx-auto
-              mt-3
-              max-w-lg
-              text-sm
-              leading-6
-              text-white/45
-            ">
+            <p
+              className="
+                mx-auto
+                mt-3
+                max-w-lg
+                text-sm
+                leading-6
+                text-white/45
+              "
+            >
               Talk to our team about Japanese classes, JLPT
               preparation or your plans for Japan.
             </p>
@@ -1113,6 +1310,7 @@ export default function AboutPage() {
             </motion.a>
 
           </div>
+
         </motion.div>
 
       </section>
@@ -1141,33 +1339,39 @@ function SectionHeading({
       }}
     >
 
-      <p className="
-        text-xs
-        font-bold
-        uppercase
-        tracking-[0.18em]
-        text-[#BC002D]
-      ">
+      <p
+        className="
+          text-xs
+          font-bold
+          uppercase
+          tracking-[0.18em]
+          text-[#BC002D]
+        "
+      >
         {eyebrow}
       </p>
 
-      <h2 className="
-        mt-2
-        text-2xl
-        font-black
-        tracking-tight
-        sm:text-3xl
-      ">
+      <h2
+        className="
+          mt-2
+          text-2xl
+          font-black
+          tracking-tight
+          sm:text-3xl
+        "
+      >
         {title}
       </h2>
 
-      <p className="
-        mt-2
-        max-w-xl
-        text-sm
-        leading-6
-        text-gray-500
-      ">
+      <p
+        className="
+          mt-2
+          max-w-xl
+          text-sm
+          leading-6
+          text-gray-500
+        "
+      >
         {text}
       </p>
 
@@ -1179,27 +1383,33 @@ function SectionHeading({
    CHECK ITEM
 ========================================================= */
 
-function CheckItem({ text }) {
+function CheckItem({
+  text,
+}) {
   return (
-    <div className="
-      flex
-      items-center
-      gap-3
-      text-sm
-      text-gray-600
-    ">
-
-      <span className="
+    <div
+      className="
         flex
-        h-5
-        w-5
-        shrink-0
         items-center
-        justify-center
-        rounded-full
-        bg-[#006A4E]/10
-        text-[#006A4E]
-      ">
+        gap-3
+        text-sm
+        text-gray-600
+      "
+    >
+
+      <span
+        className="
+          flex
+          h-5
+          w-5
+          shrink-0
+          items-center
+          justify-center
+          rounded-full
+          bg-[#006A4E]/10
+          text-[#006A4E]
+        "
+      >
         <FaCheck className="text-[7px]" />
       </span>
 
@@ -1210,10 +1420,220 @@ function CheckItem({ text }) {
 }
 
 /* =========================================================
+   TEACHER CARD
+   NAME + ROLE ARE THE IMPORTANT TEXT
+========================================================= */
+
+function TeacherCard({
+  teacher,
+}) {
+  return (
+    <motion.article
+      whileHover={{
+        y: -6,
+      }}
+      className="
+        group
+        h-full
+        overflow-hidden
+        rounded-[1.75rem]
+        border
+        border-gray-200/70
+        bg-white
+        shadow-[0_8px_30px_rgba(0,0,0,0.03)]
+        transition-all
+        duration-300
+        hover:shadow-[0_20px_45px_rgba(0,0,0,0.07)]
+      "
+    >
+
+      {/* FORMAL PORTRAIT */}
+
+      <div
+        className="
+          relative
+          flex
+          h-[360px]
+          items-center
+          justify-center
+          overflow-hidden
+          bg-[#f3f4f6]
+          px-5
+        "
+      >
+
+        <img
+          src={teacher.image}
+          alt={teacher.name}
+          className="
+            h-full
+            w-full
+            object-contain
+            object-bottom
+            transition-transform
+            duration-700
+            group-hover:scale-[1.02]
+          "
+        />
+
+      </div>
+
+      {/* INFORMATION */}
+
+<div className="p-5 text-center">
+
+  {/* NAME */}
+  <h3
+    className="
+      text-lg
+      font-black
+      tracking-tight
+      text-gray-900
+    "
+  >
+    {teacher.name}
+  </h3>
+
+  {/* ROLE */}
+  <div
+    className="
+      mt-2
+      inline-flex
+      max-w-full
+      items-center
+      justify-center
+      rounded-full
+      bg-[#006A4E]/10
+      px-3
+      py-1.5
+      text-center
+      text-[10px]
+      font-extrabold
+      uppercase
+      tracking-[0.1em]
+      text-[#006A4E]
+    "
+  >
+    {teacher.role}
+  </div>
+
+</div>
+
+    </motion.article>
+  );
+}
+
+/* =========================================================
+   STAFF CARD
+   NAME + ROLE ARE THE IMPORTANT TEXT
+========================================================= */
+
+function StaffCard({
+  member,
+}) {
+  return (
+    <motion.article
+      whileHover={{
+        y: -6,
+      }}
+      className="
+        group
+        h-full
+        overflow-hidden
+        rounded-[1.75rem]
+        border
+        border-gray-200/70
+        bg-[#fafafa]
+        shadow-[0_8px_30px_rgba(0,0,0,0.03)]
+        transition-all
+        duration-300
+        hover:shadow-[0_20px_45px_rgba(0,0,0,0.07)]
+      "
+    >
+
+      {/* FORMAL PORTRAIT */}
+
+      <div
+        className="
+          relative
+          flex
+          h-[360px]
+          items-center
+          justify-center
+          overflow-hidden
+          bg-[#f3f4f6]
+          px-5
+        "
+      >
+
+        <img
+          src={member.image}
+          alt={member.name}
+          className="
+            h-full
+            w-full
+            object-contain
+            object-bottom
+            transition-transform
+            duration-700
+            group-hover:scale-[1.02]
+          "
+        />
+
+      </div>
+
+      {/* INFORMATION */}
+
+      <div className="p-5">
+
+        {/* HIGHLIGHTED NAME */}
+
+        <h3
+          className="
+            text-lg
+            font-black
+            tracking-tight
+            text-gray-900
+          "
+        >
+          {member.name}
+        </h3>
+
+        {/* HIGHLIGHTED ROLE */}
+
+        <div
+          className="
+            mt-2
+            inline-flex
+            max-w-full
+            items-center
+            rounded-full
+            bg-[#006A4E]/10
+            px-3
+            py-1.5
+            text-[10px]
+            font-extrabold
+            uppercase
+            tracking-[0.1em]
+            text-[#006A4E]
+          "
+        >
+          {member.role}
+        </div>
+
+      </div>
+
+    </motion.article>
+  );
+}
+
+/* =========================================================
    WORK CARD
 ========================================================= */
 
-function WorkCard({ item }) {
+function WorkCard({
+  item,
+}) {
   return (
     <motion.article
       variants={fadeUp}
@@ -1232,16 +1652,18 @@ function WorkCard({ item }) {
       "
     >
 
-      <div className="
-        flex
-        h-10
-        w-10
-        items-center
-        justify-center
-        rounded-xl
-        bg-[#BC002D]/8
-        text-[#BC002D]
-      ">
+      <div
+        className="
+          flex
+          h-10
+          w-10
+          items-center
+          justify-center
+          rounded-xl
+          bg-[#BC002D]/8
+          text-[#BC002D]
+        "
+      >
         {item.icon}
       </div>
 
@@ -1249,12 +1671,14 @@ function WorkCard({ item }) {
         {item.title}
       </h3>
 
-      <p className="
-        mt-2
-        text-xs
-        leading-5
-        text-gray-500
-      ">
+      <p
+        className="
+          mt-2
+          text-xs
+          leading-5
+          text-gray-500
+        "
+      >
         {item.text}
       </p>
 
@@ -1266,7 +1690,9 @@ function WorkCard({ item }) {
    VALUE CARD
 ========================================================= */
 
-function ValueCard({ item }) {
+function ValueCard({
+  item,
+}) {
   return (
     <motion.div
       variants={fadeUp}
@@ -1282,16 +1708,18 @@ function ValueCard({ item }) {
       "
     >
 
-      <div className="
-        flex
-        h-9
-        w-9
-        items-center
-        justify-center
-        rounded-xl
-        bg-[#006A4E]/10
-        text-[#006A4E]
-      ">
+      <div
+        className="
+          flex
+          h-9
+          w-9
+          items-center
+          justify-center
+          rounded-xl
+          bg-[#006A4E]/10
+          text-[#006A4E]
+        "
+      >
         {item.icon}
       </div>
 
@@ -1299,12 +1727,14 @@ function ValueCard({ item }) {
         {item.title}
       </h3>
 
-      <p className="
-        mt-1.5
-        text-xs
-        leading-5
-        text-gray-500
-      ">
+      <p
+        className="
+          mt-1.5
+          text-xs
+          leading-5
+          text-gray-500
+        "
+      >
         {item.text}
       </p>
 

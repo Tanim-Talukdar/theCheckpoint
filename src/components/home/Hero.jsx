@@ -7,6 +7,8 @@ import {
   FiMessageCircle,
   FiInstagram,
   FiFacebook,
+  FiMail,
+  FiMapPin,
 } from "react-icons/fi";
 
 const slides = [
@@ -56,6 +58,7 @@ export default function Hero() {
       ========================================== */}
 
       <div className="pointer-events-none absolute inset-0">
+        {/* Japan Red Glow */}
 
         <motion.div
           animate={{
@@ -80,6 +83,8 @@ export default function Hero() {
           "
         />
 
+        {/* Bangladesh Green Glow */}
+
         <motion.div
           animate={{
             x: [0, -25, 0],
@@ -103,6 +108,8 @@ export default function Hero() {
           "
         />
 
+        {/* Center Neutral Glow */}
+
         <div
           className="
             absolute
@@ -116,9 +123,7 @@ export default function Hero() {
             blur-[110px]
           "
         />
-
       </div>
-
 
       {/* =========================================
           CONTENT
@@ -133,7 +138,6 @@ export default function Hero() {
           sm:px-8
         "
       >
-
         <div
           className="
             grid
@@ -142,8 +146,6 @@ export default function Hero() {
             lg:grid-cols-[1.05fr_0.95fr]
           "
         >
-
-
           {/* =======================================
               LEFT CONTENT
           ======================================== */}
@@ -157,13 +159,15 @@ export default function Hero() {
             }}
             className="max-w-2xl"
           >
-
-            {/* Country badge */}
+            {/* Country Badge */}
 
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.6 }}
+              transition={{
+                delay: 0.15,
+                duration: 0.6,
+              }}
               className="
                 mb-7
                 inline-flex
@@ -179,7 +183,6 @@ export default function Hero() {
                 backdrop-blur-xl
               "
             >
-
               <span>🇧🇩</span>
 
               <span className="text-xs font-semibold text-gray-500">
@@ -193,9 +196,7 @@ export default function Hero() {
               <span className="text-xs font-semibold text-gray-500">
                 Japan
               </span>
-
             </motion.div>
-
 
             {/* Heading */}
 
@@ -217,7 +218,6 @@ export default function Hero() {
                 lg:text-7xl
               "
             >
-
               Learn Japanese.
 
               <br />
@@ -234,9 +234,7 @@ export default function Hero() {
               >
                 Build your future.
               </span>
-
             </motion.h1>
-
 
             {/* Description */}
 
@@ -261,7 +259,6 @@ export default function Hero() {
               opportunities in Japan.
             </motion.p>
 
-
             {/* Buttons */}
 
             <motion.div
@@ -273,6 +270,7 @@ export default function Hero() {
               }}
               className="mt-9 flex flex-wrap gap-4"
             >
+              {/* Contact */}
 
               <motion.a
                 href="/contact"
@@ -298,7 +296,6 @@ export default function Hero() {
                   shadow-[0_10px_30px_rgba(0,106,78,0.18)]
                 "
               >
-
                 Contact Us
 
                 <motion.span
@@ -307,9 +304,9 @@ export default function Hero() {
                 >
                   →
                 </motion.span>
-
               </motion.a>
 
+              {/* Courses */}
 
               <motion.a
                 href="/courses"
@@ -338,9 +335,7 @@ export default function Hero() {
               >
                 Explore Courses
               </motion.a>
-
             </motion.div>
-
 
             {/* =====================================
                 CONTACT BAR
@@ -355,31 +350,41 @@ export default function Hero() {
               }}
               className="
                 mt-7
-                inline-flex
+                flex
                 max-w-full
                 flex-wrap
                 items-center
-                gap-1
+                gap-1.5
                 rounded-2xl
                 border
                 border-white/70
-                bg-white/35
+                bg-white/40
                 p-1.5
                 shadow-[0_8px_30px_rgba(0,0,0,0.06)]
                 backdrop-blur-2xl
               "
             >
-
-              {/* WhatsApp */}
+              {/* WhatsApp 1 */}
 
               <SocialButton
                 href="https://wa.me/880163278705"
                 icon={<FiMessageCircle />}
-                label="WhatsApp"
+                label="01632-78705"
                 color="green"
               />
 
-              <span className="h-5 w-px bg-gray-200/70" />
+              <Divider />
+
+              {/* WhatsApp 2 */}
+
+              <SocialButton
+                href="https://wa.me/8801919248151"
+                icon={<FiMessageCircle />}
+                label="01919-248151"
+                color="green"
+              />
+
+              <Divider />
 
               {/* Instagram */}
 
@@ -390,65 +395,84 @@ export default function Hero() {
                 color="red"
               />
 
-              <span className="h-5 w-px bg-gray-200/70" />
+              <Divider />
 
               {/* Facebook */}
 
               <SocialButton
-                href="https://facebook.com/YOUR_PAGE"
+                href="https://www.facebook.com/profile.php?id=100094932286301"
                 icon={<FiFacebook />}
                 label="Facebook"
                 color="blue"
               />
 
-              <span className="h-5 w-px bg-gray-200/70" />
+              <Divider />
 
-              {/* Phone */}
+              {/* Gmail */}
+
+              <ContactButton
+                href="mailto:dhakaforeignacademy@gmail.com"
+                icon={<FiMail />}
+                label="dhakaforeignacademy@gmail.com"
+                color="red"
+              />
+
+              <Divider />
+
+
+              {/* Location */}
 
               <motion.a
-                href="tel:+880 1632-78705"
-                whileHover={{ scale: 1.03 }}
+                href="https://maps.google.com/?q=Rising+Sun+Tower,Mirpur,Dhaka,Bangladesh"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{
+                  scale: 1.02,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
                 className="
                   group
                   flex
                   items-center
                   gap-2.5
                   rounded-xl
+                  bg-[#006A4E]/5
                   px-3
                   py-2
                   text-sm
                   font-semibold
                   text-gray-600
-                  transition-colors
-                  hover:bg-gray-900/5
-                  hover:text-gray-900
+                  transition-all
+                  hover:bg-[#006A4E]/10
+                  hover:text-[#006A4E]
                 "
               >
-
                 <span
                   className="
                     flex
                     h-9
-                    w-8
+                    w-9
                     shrink-0
                     items-center
                     justify-center
                     rounded-xl
-                    bg-gray-900/5
-                    text-gray-700
+                    bg-[#006A4E]/10
+                    text-[#006A4E]
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
                   "
                 >
-                  <FiPhone className="h-5 w-5" />
+                  <FiMapPin className="h-4.5 w-4.5" />
                 </span>
 
-                <span className="text-sm font-bold">
-                  +880163278705
+                <span className="text-sm font-semibold">
+                  Rising Sun Complex, Benaroshi Polli, Paris Road, Mirpur-10, Dhaka-1216
                 </span>
-
               </motion.a>
-
             </motion.div>
-
 
             {/* =====================================
                 STATS
@@ -470,7 +494,6 @@ export default function Hero() {
                 divide-gray-200
               "
             >
-
               <Stat
                 value="500+"
                 label="Students"
@@ -485,28 +508,37 @@ export default function Hero() {
                 value="95%"
                 label="Satisfaction"
               />
-
             </motion.div>
-
           </motion.div>
-
 
           {/* =======================================
               RIGHT — SUCCESS SLIDER
           ======================================== */}
 
           <motion.div
-            initial={{ opacity: 0, x: 35, scale: 0.96 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
+            initial={{
+              opacity: 0,
+              x: 35,
+              scale: 0.96,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
             transition={{
               duration: 0.9,
               delay: 0.15,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="relative mx-auto w-full max-w-[520px]"
+            className="
+              relative
+              mx-auto
+              w-full
+              max-w-[520px]
+            "
           >
-
-            {/* Green glow */}
+            {/* Green Glow */}
 
             <motion.div
               animate={{
@@ -530,8 +562,7 @@ export default function Hero() {
               "
             />
 
-
-            {/* Red glow */}
+            {/* Red Glow */}
 
             <motion.div
               animate={{
@@ -555,8 +586,7 @@ export default function Hero() {
               "
             />
 
-
-            {/* Main card */}
+            {/* Main Card */}
 
             <motion.div
               whileHover={{
@@ -579,7 +609,6 @@ export default function Hero() {
                 backdrop-blur-2xl
               "
             >
-
               <div
                 className="
                   relative
@@ -589,13 +618,9 @@ export default function Hero() {
                   bg-gray-100
                 "
               >
-
-                {/* =================================
-                    SMOOTH IMAGE CROSSFADE
-                ================================== */}
+                {/* Image Crossfade */}
 
                 <AnimatePresence mode="sync">
-
                   <motion.img
                     key={slide.image}
                     src={slide.image}
@@ -630,11 +655,9 @@ export default function Hero() {
                       object-cover
                     "
                   />
-
                 </AnimatePresence>
 
-
-                {/* Image gradient */}
+                {/* Image Gradient */}
 
                 <div
                   className="
@@ -649,13 +672,9 @@ export default function Hero() {
                   "
                 />
 
-
-                {/* =================================
-                    SLIDE CONTENT
-                ================================== */}
+                {/* Slide Content */}
 
                 <AnimatePresence mode="wait">
-
                   <motion.div
                     key={currentSlide}
                     initial={{
@@ -682,7 +701,6 @@ export default function Hero() {
                       text-white
                     "
                   >
-
                     <p
                       className="
                         text-xs
@@ -702,15 +720,11 @@ export default function Hero() {
                     <p className="mt-2 text-sm leading-6 text-white/75">
                       {slide.text}
                     </p>
-
                   </motion.div>
-
                 </AnimatePresence>
-
               </div>
 
-
-              {/* Slider indicators */}
+              {/* Slider Indicators */}
 
               <div
                 className="
@@ -721,18 +735,17 @@ export default function Hero() {
                   pt-4
                 "
               >
-
                 <div className="flex gap-1.5">
-
                   {slides.map((_, index) => (
-
                     <motion.button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
                       aria-label={`Go to slide ${index + 1}`}
                       animate={{
                         width:
-                          currentSlide === index ? 32 : 6,
+                          currentSlide === index
+                            ? 32
+                            : 6,
                       }}
                       transition={{
                         duration: 0.35,
@@ -748,28 +761,32 @@ export default function Hero() {
                         }
                       `}
                     />
-
                   ))}
-
                 </div>
 
-
-                <div className="text-xs font-medium text-gray-400">
-
-                  {String(currentSlide + 1).padStart(2, "0")}
+                <div
+                  className="
+                    text-xs
+                    font-medium
+                    text-gray-400
+                  "
+                >
+                  {String(currentSlide + 1).padStart(
+                    2,
+                    "0"
+                  )}
 
                   <span className="mx-1 text-gray-300">
                     /
                   </span>
 
-                  {String(slides.length).padStart(2, "0")}
-
+                  {String(slides.length).padStart(
+                    2,
+                    "0"
+                  )}
                 </div>
-
               </div>
-
             </motion.div>
-
 
             {/* =====================================
                 FLOATING CONTACT CARD
@@ -777,7 +794,10 @@ export default function Hero() {
 
             <motion.a
               href="/contact"
-              initial={{ opacity: 0, y: 15 }}
+              initial={{
+                opacity: 0,
+                y: 15,
+              }}
               animate={{
                 opacity: 1,
                 y: [0, -4, 0],
@@ -813,7 +833,6 @@ export default function Hero() {
                 backdrop-blur-2xl
               "
             >
-
               <div
                 className="
                   flex
@@ -831,7 +850,6 @@ export default function Hero() {
               </div>
 
               <div>
-
                 <p
                   className="
                     text-[11px]
@@ -844,14 +862,18 @@ export default function Hero() {
                   Need information?
                 </p>
 
-                <p className="mt-0.5 text-base font-bold text-gray-700">
+                <p
+                  className="
+                    mt-0.5
+                    text-base
+                    font-bold
+                    text-gray-700
+                  "
+                >
                   Talk to our team
                 </p>
-
               </div>
-
             </motion.a>
-
 
             {/* =====================================
                 JAPAN BADGE
@@ -887,20 +909,19 @@ export default function Hero() {
             >
               🇯🇵
             </motion.div>
-
           </motion.div>
-
         </div>
-
       </div>
-
 
       {/* =========================================
           BOTTOM SERVICES
       ========================================== */}
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
         whileInView={{
           opacity: 1,
           y: 0,
@@ -921,7 +942,6 @@ export default function Hero() {
           sm:px-8
         "
       >
-
         <div
           className="
             flex
@@ -938,37 +958,71 @@ export default function Hero() {
             text-gray-400
           "
         >
-
           <span>
             Japanese Language Coaching
           </span>
 
-          <span className="h-1 w-1 rounded-full bg-[#BC002D]" />
+          <span
+            className="
+              h-1
+              w-1
+              rounded-full
+              bg-[#BC002D]
+            "
+          />
 
           <span>
             JLPT Preparation
           </span>
 
-          <span className="h-1 w-1 rounded-full bg-[#006A4E]" />
+          <span
+            className="
+              h-1
+              w-1
+              rounded-full
+              bg-[#006A4E]
+            "
+          />
 
           <span>
             Japan Study Guidance
           </span>
 
-          <span className="h-1 w-1 rounded-full bg-gray-300" />
+          <span
+            className="
+              h-1
+              w-1
+              rounded-full
+              bg-gray-300
+            "
+          />
 
           <span>
             Visa Processing
           </span>
-
         </div>
-
       </motion.div>
-
     </section>
   );
 }
 
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+function Divider() {
+  return (
+    <span
+      className="
+        hidden
+        h-5
+        w-px
+        bg-gray-200/70
+        sm:block
+      "
+    />
+  );
+}
 
 /* =========================================================
    SOCIAL BUTTON
@@ -982,18 +1036,24 @@ function SocialButton({
 }) {
   const colors = {
     green: {
-      hover: "hover:bg-[#006A4E]/10 hover:text-[#006A4E]",
-      icon: "bg-[#006A4E]/10 text-[#006A4E]",
+      hover:
+        "hover:bg-[#006A4E]/10 hover:text-[#006A4E]",
+      icon:
+        "bg-[#006A4E]/10 text-[#006A4E]",
     },
 
     red: {
-      hover: "hover:bg-[#BC002D]/10 hover:text-[#BC002D]",
-      icon: "bg-[#BC002D]/10 text-[#BC002D]",
+      hover:
+        "hover:bg-[#BC002D]/10 hover:text-[#BC002D]",
+      icon:
+        "bg-[#BC002D]/10 text-[#BC002D]",
     },
 
     blue: {
-      hover: "hover:bg-blue-500/10 hover:text-blue-600",
-      icon: "bg-blue-500/10 text-blue-600",
+      hover:
+        "hover:bg-blue-500/10 hover:text-blue-600",
+      icon:
+        "bg-blue-500/10 text-blue-600",
     },
   };
 
@@ -1025,12 +1085,11 @@ function SocialButton({
         ${theme.hover}
       `}
     >
-
       <span
         className={`
           flex
           h-9
-          w-8
+          w-9
           shrink-0
           items-center
           justify-center
@@ -1047,11 +1106,93 @@ function SocialButton({
       <span className="text-sm font-semibold">
         {label}
       </span>
-
     </motion.a>
   );
 }
 
+/* =========================================================
+   CONTACT BUTTON
+========================================================= */
+
+function ContactButton({
+  href,
+  icon,
+  label,
+  color,
+}) {
+  const colors = {
+    red: {
+      hover:
+        "hover:bg-[#BC002D]/10 hover:text-[#BC002D]",
+      icon:
+        "bg-[#BC002D]/10 text-[#BC002D]",
+    },
+
+    gray: {
+      hover:
+        "hover:bg-gray-900/5 hover:text-gray-900",
+      icon:
+        "bg-gray-900/5 text-gray-700",
+    },
+
+    green: {
+      hover:
+        "hover:bg-[#006A4E]/10 hover:text-[#006A4E]",
+      icon:
+        "bg-[#006A4E]/10 text-[#006A4E]",
+    },
+  };
+
+  const theme = colors[color];
+
+  return (
+    <motion.a
+      href={href}
+      whileHover={{
+        scale: 1.03,
+      }}
+      whileTap={{
+        scale: 0.96,
+      }}
+      className={`
+        group
+        flex
+        items-center
+        gap-2.5
+        rounded-xl
+        px-3
+        py-2
+        text-sm
+        font-semibold
+        text-gray-600
+        transition-colors
+        ${theme.hover}
+      `}
+    >
+      <span
+        className={`
+          flex
+          h-9
+          w-9
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          transition-transform
+          duration-300
+          group-hover:scale-110
+          ${theme.icon}
+        `}
+      >
+        {icon}
+      </span>
+
+      <span className="text-sm font-semibold">
+        {label}
+      </span>
+    </motion.a>
+  );
+}
 
 /* =========================================================
    STAT
@@ -1065,15 +1206,25 @@ function Stat({ value, label }) {
       }}
       className="cursor-default"
     >
-
-      <p className="text-2xl font-black text-gray-800">
+      <p
+        className="
+          text-2xl
+          font-black
+          text-gray-800
+        "
+      >
         {value}
       </p>
 
-      <p className="mt-1 text-xs text-gray-400">
+      <p
+        className="
+          mt-1
+          text-xs
+          text-gray-400
+        "
+      >
         {label}
       </p>
-
     </motion.div>
   );
 }

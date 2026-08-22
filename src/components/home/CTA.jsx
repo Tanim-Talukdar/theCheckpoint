@@ -278,7 +278,7 @@ export default function CTA() {
               {/* WhatsApp */}
 
               <a
-                href="https://wa.me/8801XXXXXXXXX"
+                href="https://wa.me/880163278705"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
@@ -332,7 +332,7 @@ export default function CTA() {
               {/* Facebook */}
 
               <a
-                href="https://facebook.com/YOUR_PAGE"
+                href="https://www.facebook.com/profile.php?id=100094932286301"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
