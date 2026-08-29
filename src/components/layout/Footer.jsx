@@ -1,856 +1,292 @@
-"use client";
-
+import Link from "next/link";
 import {
-  FaFacebookF,
-  FaInstagram,
-  FaWhatsapp,
-  FaPhone,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaArrowUp,
-} from "react-icons/fa";
+  FiArrowUpRight,
+  FiInstagram,
+  FiFacebook,
+  FiYoutube,
+  FiMapPin,
+  FiPhone,
+  FiMail,
+} from "react-icons/fi";
 
-const footerLinks = {
-  Explore: [
-    {
-      name: "Japanese Courses",
-      href: "/courses",
-    },
-    {
-      name: "Visa Processing",
-      href: "/visaprocessing",
-    },
-  ],
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "Gaming", href: "#gaming" },
+  { name: "Restaurant", href: "#restaurant" },
+  { name: "Gym", href: "#gym" },
+  { name: "Events", href: "#events" },
+  { name: "About", href: "#about" },
+];
 
-  Academy: [
-    {
-      name: "About Us",
-      href: "/about",
-    },
-    {
-      name: "Success Stories",
-      href: "/success-stories",
-    },
-    {
-      name: "Contact",
-      href: "/contact",
-    },
-  ],
-};
+const services = [
+  { name: "Gaming Lounge", href: "#gaming" },
+  { name: "Restaurant", href: "#restaurant" },
+  { name: "Gym", href: "#gym" },
+  { name: "Private Events", href: "#events" },
+];
 
 export default function Footer() {
   return (
-    <footer
-      className="
-        relative
-        overflow-hidden
-        bg-[#071b18]
-        text-white
-      "
-    >
+    <footer className="border-t border-white/[0.08] bg-[#050A14] text-white">
 
-      {/* =========================================
-          BACKGROUND
-      ========================================== */}
+      {/* ================= TOP CTA ================= */}
+      <section className="border-b border-white/[0.08]">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-6 py-16 sm:px-8 lg:flex-row lg:items-center lg:py-20">
 
-      <div className="pointer-events-none absolute inset-0">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-blue-500">
+              Your next experience starts here
+            </p>
 
-        {/* Emerald glow */}
+            <h2 className="max-w-3xl text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+              READY TO
+              <span className="text-blue-500"> CHECK IN?</span>
+            </h2>
+          </div>
 
-        <div
-          className="
-            absolute
-            -left-40
-            -top-40
-            h-[500px]
-            w-[500px]
-            rounded-full
-            bg-[#006A4E]/35
-            blur-[150px]
-          "
-        />
+          <Link
+            href="#booking"
+            className="
+              group flex shrink-0 items-center gap-3
+              rounded-xl bg-blue-600
+              px-6 py-4
+              text-sm font-bold
+              transition duration-300
+              hover:bg-blue-500
+            "
+          >
+            BOOK YOUR EXPERIENCE
 
-        {/* Red glow */}
+            <FiArrowUpRight
+              size={18}
+              className="transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </Link>
 
-        <div
-          className="
-            absolute
-            right-[-180px]
-            top-[-120px]
-            h-[420px]
-            w-[420px]
-            rounded-full
-            bg-[#BC002D]/20
-            blur-[150px]
-          "
-        />
+        </div>
+      </section>
 
-        {/* Deep green glow */}
+      {/* ================= MAIN FOOTER ================= */}
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8">
 
-        <div
-          className="
-            absolute
-            bottom-[-200px]
-            left-[25%]
-            h-[500px]
-            w-[500px]
-            rounded-full
-            bg-[#008f6b]/15
-            blur-[160px]
-          "
-        />
+        <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
 
-        {/* Navy glow */}
+          {/* ================= BRAND ================= */}
+          <div>
 
-        <div
-          className="
-            absolute
-            bottom-0
-            right-[15%]
-            h-[350px]
-            w-[350px]
-            rounded-full
-            bg-[#102a43]/30
-            blur-[130px]
-          "
-        />
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-600">
+                <span className="text-xl font-black italic">
+                  C
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-black tracking-[0.08em]">
+                  THE CHECKPOINT
+                </h3>
+
+                <p className="mt-1 text-[8px] tracking-[0.3em] text-slate-500">
+                  GAMING · DINING · FITNESS
+                </p>
+              </div>
+            </Link>
+
+            <p className="mt-6 max-w-sm text-sm leading-7 text-slate-500">
+              Bangladesh's premium destination for gaming, dining and
+              fitness. Come to play, eat, train and make memories.
+            </p>
+
+            {/* SOCIALS */}
+            <div className="mt-7 flex items-center gap-3">
+
+              <SocialIcon
+                href="#"
+                label="Instagram"
+              >
+                <FiInstagram size={17} />
+              </SocialIcon>
+
+              <SocialIcon
+                href="#"
+                label="Facebook"
+              >
+                <FiFacebook size={17} />
+              </SocialIcon>
+
+              <SocialIcon
+                href="#"
+                label="YouTube"
+              >
+                <FiYoutube size={17} />
+              </SocialIcon>
+
+            </div>
+
+          </div>
+
+          {/* ================= NAVIGATION ================= */}
+          <div>
+            <h4 className="text-sm font-bold">
+              NAVIGATION
+            </h4>
+
+            <ul className="mt-6 space-y-4">
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="
+                      text-sm text-slate-500
+                      transition
+                      hover:text-white
+                    "
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ================= SERVICES ================= */}
+          <div>
+            <h4 className="text-sm font-bold">
+              EXPERIENCES
+            </h4>
+
+            <ul className="mt-6 space-y-4">
+              {services.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="
+                      text-sm text-slate-500
+                      transition
+                      hover:text-white
+                    "
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ================= CONTACT ================= */}
+          <div>
+            <h4 className="text-sm font-bold">
+              GET IN TOUCH
+            </h4>
+
+            <div className="mt-6 space-y-5">
+
+              <ContactItem
+                icon={<FiMapPin size={17} />}
+                text="Dhaka, Bangladesh"
+              />
+
+              <ContactItem
+                icon={<FiPhone size={17} />}
+                text="+880 1XXX-XXXXXX"
+              />
+
+              <ContactItem
+                icon={<FiMail size={17} />}
+                text="hello@thecheckpoint.com"
+              />
+
+            </div>
+
+            <Link
+              href="#contact"
+              className="
+                mt-7 inline-flex items-center gap-2
+                text-sm font-semibold text-blue-500
+                transition hover:text-blue-400
+              "
+            >
+              Contact us
+              <FiArrowUpRight size={15} />
+            </Link>
+          </div>
+
+        </div>
 
       </div>
 
-
-      {/* =========================================
-          TOP ACCENT
-      ========================================== */}
-
-      <div
-        className="
-          absolute
-          left-0
-          right-0
-          top-0
-          h-[2px]
-          bg-gradient-to-r
-          from-[#BC002D]
-          via-[#f5f5f0]
-          to-[#006A4E]
-        "
-      />
-
-
-      {/* =========================================
-          MAIN FOOTER
-      ========================================== */}
-
-      <div
-        className="
-          relative
-          mx-auto
-          max-w-7xl
-          px-5
-          pb-8
-          pt-16
-          sm:px-8
-          sm:pt-20
-        "
-      >
-
-        <div
-          className="
-            grid
-            gap-12
-            lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]
-          "
-        >
-
-          {/* =====================================
-              BRAND
-          ====================================== */}
-
-          <div className="max-w-sm">
-
-            <a
-              href="/"
-              className="group inline-flex items-center gap-3"
-            >
-
-              {/* Logo */}
-
-              <div
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  overflow-hidden
-                  rounded-2xl
-                  border
-                  border-white/10
-                  bg-[#f8f7f1]
-                  p-1.5
-                  shadow-[0_8px_30px_rgba(0,0,0,0.2)]
-                  transition-all
-                  duration-300
-                  group-hover:scale-105
-                "
-              >
-
-                <img
-                  src="/dhaka-foreign-academy.webp"
-                  alt="Dhaka Foreign Academy"
-                  className="h-full w-full object-contain"
-                />
-
-              </div>
-
-
-              {/* Name */}
-
-              <div>
-
-                <h2
-                  className="
-                    text-base
-                    font-extrabold
-                    tracking-tight
-                    text-[#f8f7f1]
-                  "
-                >
-                  Dhaka Foreign Academy
-                </h2>
-
-                <p
-                  className="
-                    mt-1
-                    text-[8px]
-                    font-bold
-                    uppercase
-                    tracking-[0.25em]
-                    text-[#d8e4df]/45
-                  "
-                >
-                  Language & Education
-                </p>
-
-              </div>
-
-            </a>
-
-
-            <p
-              className="
-                mt-6
-                text-sm
-                leading-7
-                text-[#d8e4df]/60
-              "
-            >
-              Japanese language coaching and Japan-focused guidance
-              for students and professionals in Bangladesh.
-            </p>
-
-
-            {/* Bangladesh → Japan */}
-
-            <div className="mt-6 flex items-center gap-3">
-
-              <span className="text-xl">
-                🇧🇩
-              </span>
-
-              <div
-                className="
-                  h-px
-                  w-8
-                  bg-gradient-to-r
-                  from-[#BC002D]
-                  to-white/20
-                "
-              />
-
-              <span className="text-xl">
-                🇯🇵
-              </span>
-
-              <span
-                className="
-                  text-[10px]
-                  font-bold
-                  uppercase
-                  tracking-[0.18em]
-                  text-[#d8e4df]/40
-                "
-              >
-                Bangladesh → Japan
-              </span>
-
-            </div>
-
-
-            {/* Social Icons */}
-
-            <div className="mt-7 flex items-center gap-2">
-
-              {/* Facebook */}
-
-              <a
-                href="https://www.facebook.com/profile.php?id=100094932286301"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/[0.05]
-                  text-white/55
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-blue-400/30
-                  hover:bg-blue-500/10
-                  hover:text-blue-400
-                "
-              >
-                <FaFacebookF />
-              </a>
-
-
-              {/* Instagram */}
-
-              <a
-                href="https://instagram.com/YOUR_ACCOUNT"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/[0.05]
-                  text-white/55
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-pink-400/30
-                  hover:bg-pink-500/10
-                  hover:text-pink-400
-                "
-              >
-                <FaInstagram />
-              </a>
-
-
-              {/* WhatsApp */}
-
-              <a
-                href="https://wa.me/88001919248151"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/[0.05]
-                  text-white/55
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:border-green-300/30
-                  hover:bg-green-400/10
-                  hover:text-green-300
-                "
-              >
-                <FaWhatsapp />
-              </a>
-
-            </div>
-
-          </div>
-
-
-          {/* =====================================
-              EXPLORE
-          ====================================== */}
-
-          <div>
-
-            <h3
-              className="
-                text-sm
-                font-bold
-                text-[#f8f7f1]
-              "
-            >
-              Explore
-            </h3>
-
-            <div className="mt-5 space-y-3">
-
-              {footerLinks.Explore.map((link) => (
-
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="
-                    group
-                    flex
-                    items-center
-                    gap-2
-                    text-sm
-                    text-[#d8e4df]/50
-                    transition-all
-                    duration-200
-                    hover:translate-x-1
-                    hover:text-[#f8f7f1]
-                  "
-                >
-
-                  <span
-                    className="
-                      h-1
-                      w-1
-                      rounded-full
-                      bg-[#BC002D]
-                      opacity-0
-                      transition-opacity
-                      duration-200
-                      group-hover:opacity-100
-                    "
-                  />
-
-                  {link.name}
-
-                </a>
-
-              ))}
-
-            </div>
-
-          </div>
-
-
-          {/* =====================================
-              ACADEMY
-          ====================================== */}
-
-          <div>
-
-            <h3
-              className="
-                text-sm
-                font-bold
-                text-[#f8f7f1]
-              "
-            >
-              Academy
-            </h3>
-
-            <div className="mt-5 space-y-3">
-
-              {footerLinks.Academy.map((link) => (
-
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="
-                    group
-                    flex
-                    items-center
-                    gap-2
-                    text-sm
-                    text-[#d8e4df]/50
-                    transition-all
-                    duration-200
-                    hover:translate-x-1
-                    hover:text-[#f8f7f1]
-                  "
-                >
-
-                  <span
-                    className="
-                      h-1
-                      w-1
-                      rounded-full
-                      bg-[#006A4E]
-                      opacity-0
-                      transition-opacity
-                      duration-200
-                      group-hover:opacity-100
-                    "
-                  />
-
-                  {link.name}
-
-                </a>
-
-              ))}
-
-            </div>
-
-          </div>
-
-
-          {/* =====================================
-              CONTACT
-          ====================================== */}
-
-          <div>
-
-            <h3
-              className="
-                text-sm
-                font-bold
-                text-[#f8f7f1]
-              "
-            >
-              Get in touch
-            </h3>
-
-            <p
-              className="
-                mt-4
-                text-sm
-                leading-6
-                text-[#d8e4df]/55
-              "
-            >
-              Have questions about courses, JLPT, visa processing
-              or studying in Japan? Our team is here to help.
-            </p>
-
-
-            {/* PHONE 1 */}
-
-            <a
-              href="tel:+880163278705"
-              className="
-                group
-                mt-5
-                flex
-                items-center
-                gap-3
-                rounded-2xl
-                border
-                border-white/10
-                bg-gradient-to-r
-                from-[#BC002D]/10
-                to-white/[0.03]
-                p-3.5
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:border-[#BC002D]/30
-                hover:bg-[#BC002D]/15
-              "
-            >
-
-              <span
-                className="
-                  flex
-                  h-9
-                  w-9
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-[#BC002D]/15
-                  text-[#ff6680]
-                "
-              >
-                <FaPhone className="text-xs" />
-              </span>
-
-              <div>
-
-                <p
-                  className="
-                    text-[9px]
-                    font-bold
-                    uppercase
-                    tracking-wider
-                    text-white/30
-                  "
-                >
-                  Call Us
-                </p>
-
-                <p
-                  className="
-                    mt-0.5
-                    text-sm
-                    font-bold
-                    text-white/80
-                  "
-                >
-                  +880 1632-78705
-                </p>
-
-              </div>
-
-            </a>
-
-
-            {/* PHONE 2 */}
-
-            <a
-              href="tel:+8801919248151"
-              className="
-                group
-                mt-2
-                flex
-                items-center
-                gap-3
-                rounded-2xl
-                border
-                border-white/10
-                bg-gradient-to-r
-                from-[#006A4E]/20
-                to-white/[0.03]
-                p-3.5
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:border-[#008f6b]/40
-                hover:bg-[#006A4E]/30
-              "
-            >
-
-              <span
-                className="
-                  flex
-                  h-9
-                  w-9
-                  shrink-0
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-[#006A4E]/35
-                  text-green-300
-                "
-              >
-                <FaPhone className="text-xs" />
-              </span>
-
-              <div>
-
-                <p
-                  className="
-                    text-[9px]
-                    font-bold
-                    uppercase
-                    tracking-wider
-                    text-white/30
-                  "
-                >
-                  WhatsApp / Phone
-                </p>
-
-                <p
-                  className="
-                    mt-0.5
-                    text-sm
-                    font-bold
-                    text-white/80
-                  "
-                >
-                  +880 1919-248151
-                </p>
-
-              </div>
-
-            </a>
-
-
-            {/* EMAIL 1 */}
-
-            <a
-              href="mailto:info@example.com"
-              className="
-                group
-                mt-3
-                flex
-                items-center
-                gap-3
-                rounded-xl
-                p-2
-                text-sm
-                text-[#d8e4df]/50
-                transition-colors
-                hover:text-white
-              "
-            >
-
-              <FaEnvelope
-                className="
-                  text-xs
-                  text-[#d8e4df]/35
-                "
-              />
-
-              <span>
-                dhakaforeignacademy@gmail.com
-              </span>
-
-            </a>
-
-
-
-
-
-            {/* LOCATION */}
-
-            <div
-              className="
-                mt-2
-                flex
-                items-start
-                gap-3
-                px-2
-                text-sm
-                leading-6
-                text-[#d8e4df]/50
-              "
-            >
-
-              <FaMapMarkerAlt
-                className="
-                  mt-1
-                  shrink-0
-                  text-xs
-                  text-[#d8e4df]/35
-                "
-              />
-
-              <span>
-                Rising Sun Complex, Benaroshi Polli, Paris Road, Mirpur-10, Dhaka-1216
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        {/* =========================================
-            DIVIDER
-        ========================================== */}
-
-        <div
-          className="
-            my-12
-            h-px
-            bg-gradient-to-r
-            from-transparent
-            via-white/15
-            to-transparent
-          "
-        />
-
-
-        {/* =========================================
-            BOTTOM
-        ========================================== */}
-
-        <div
-          className="
-            flex
-            flex-col
-            gap-5
-            sm:flex-row
-            sm:items-center
-            sm:justify-between
-          "
-        >
-
-          <p className="text-xs text-[#d8e4df]/30">
-            © {new Date().getFullYear()} Dhaka Foreign Academy.
-            All rights reserved.
+      {/* ================= BOTTOM ================= */}
+      <div className="border-t border-white/[0.08]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 sm:px-8 md:flex-row md:items-center md:justify-between">
+
+          <p className="text-xs text-slate-600">
+            © {new Date().getFullYear()} The Checkpoint. All rights reserved.
           </p>
 
-
-          <div className="flex flex-wrap items-center gap-5">
-
-            <a
-              href="/privacy"
-              className="
-                text-xs
-                text-[#d8e4df]/30
-                transition-colors
-                hover:text-white/70
-              "
+          <div className="flex gap-6">
+            <Link
+              href="#privacy"
+              className="text-xs text-slate-600 transition hover:text-slate-400"
             >
               Privacy Policy
-            </a>
+            </Link>
 
-            <a
-              href="/terms"
-              className="
-                text-xs
-                text-[#d8e4df]/30
-                transition-colors
-                hover:text-white/70
-              "
+            <Link
+              href="#terms"
+              className="text-xs text-slate-600 transition hover:text-slate-400"
             >
-              Terms
-            </a>
-
-
-            {/* Back to top */}
-
-            <button
-              onClick={() =>
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }
-              className="
-                flex
-                h-9
-                w-9
-                items-center
-                justify-center
-                rounded-xl
-                border
-                border-white/10
-                bg-white/[0.05]
-                text-white/45
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-white/20
-                hover:bg-white/10
-                hover:text-white
-              "
-              aria-label="Back to top"
-            >
-              <FaArrowUp className="text-xs" />
-            </button>
-
+              Terms & Conditions
+            </Link>
           </div>
 
         </div>
-
       </div>
 
     </footer>
+  );
+}
+
+/* ================= SOCIAL ICON ================= */
+
+function SocialIcon({ href, children, label }) {
+  return (
+    <Link
+      href={href}
+      aria-label={label}
+      className="
+        flex h-10 w-10 items-center justify-center
+        rounded-lg
+        border border-white/10
+        bg-white/[0.03]
+        text-slate-400
+        transition duration-300
+        hover:border-blue-500/40
+        hover:bg-blue-500/10
+        hover:text-blue-400
+      "
+    >
+      {children}
+    </Link>
+  );
+}
+
+/* ================= CONTACT ITEM ================= */
+
+function ContactItem({ icon, text }) {
+  return (
+    <div className="flex items-center gap-4">
+
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-500/10 text-blue-500">
+        {icon}
+      </div>
+
+      <span className="text-sm text-slate-500">
+        {text}
+      </span>
+
+    </div>
   );
 }

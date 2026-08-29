@@ -1,633 +1,546 @@
+
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FiMenu,
+  FiX,
+  FiArrowUpRight,
+} from "react-icons/fi";
 
-const menus = [
+const links = [
   {
     name: "Home",
     href: "/",
   },
   {
-    name: "Courses",
-    href: "/courses",
+    name: "Packages & Memberships",
+    href: "/packagesmemberships",
+  },
+  {
+    name: "Gaming",
+    href: "/gaming",
+  },
+  {
+    name: "Restaurant",
+    href: "/restaurant",
+  },
+  {
+    name: "Gym",
+    href: "/gym",
   },
 
-  {
-    name: "Visa Processing",
-    href: "/visaprocessing",
-  },
-
-  {
-    name: "Success Story",
-    href: "/gallery",
-  },
-
-  // NO ITEMS = NO DROPDOWN
-  {
-    name: "About",
-    href: "/about",
-  },
-
-  // NO ITEMS = NO DROPDOWN
-  {
-    name: "Contact",
-    href: "/contact",
-  },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const isActive = (href) => {
-    if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(`${href}/`);
-  };
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full px-3 pt-4 sm:px-6 sm:pt-5">
-      <nav
-        className="
-          relative mx-auto max-w-7xl
-          rounded-[2.8rem]
-          border border-white/70
-          bg-white/45
-          px-3 py-2.5
-          shadow-[0_12px_45px_rgba(0,0,0,0.07),inset_0_1px_0_rgba(255,255,255,0.95)]
-          backdrop-blur-[35px]
-          backdrop-saturate-150
-          sm:px-4 sm:py-3
-        "
-      >
-        {/* Top glass highlight */}
-        <div className="pointer-events-none absolute left-10 right-10 top-0 h-px rounded-full bg-white" />
+    <motion.header
+      initial={{
+        opacity: 0,
+        y: -25,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6"
+    >
+      <nav className="mx-auto max-w-7xl rounded-2xl border border-white/10 bg-[#07101c]/80 shadow-2xl backdrop-blur-xl">
 
-        {/* Left glass half-circle */}
-        <div
-          className="
-            pointer-events-none
-            absolute -left-[1px] top-1/2
-            h-12 w-6 -translate-y-1/2
-            rounded-r-full
-            border border-l-0 border-white/70
-            bg-white/25
-            shadow-[inset_-5px_0_12px_rgba(255,255,255,0.4)]
-            backdrop-blur-xl
-          "
-        />
+        {/* =====================================================
+            DESKTOP / TOP BAR
+        ====================================================== */}
 
-        <div className="relative flex items-center justify-between">
+        <div className="flex h-[68px] items-center justify-between px-5 sm:px-7">
 
-          {/* ================= LOGO ================= */}
+          {/* =================================================
+              LOGO
+          ================================================== */}
 
           <Link
             href="/"
-            className="
-              group flex items-center gap-3
-              rounded-2xl px-2 py-1
-              transition-all duration-300
-              hover:bg-white/30
-            "
+            className="group flex items-center gap-3"
           >
-            <div
+            <motion.div
+              whileHover={{
+                scale: 1.08,
+                rotate: -4,
+              }}
+              whileTap={{
+                scale: 0.94,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 18,
+              }}
               className="
-                flex h-11 w-11 shrink-0
-                items-center justify-center
-                overflow-hidden
-                rounded-2xl
-                border border-white/80
-                bg-white/50
-                p-1
-                shadow-[0_5px_18px_rgba(0,0,0,0.05)]
-                backdrop-blur-xl
-                transition-all duration-500
-                group-hover:scale-105
-                group-hover:rotate-1
+                flex h-10 w-10 items-center justify-center
+                rounded-lg
+                bg-blue-600
+                shadow-lg shadow-blue-600/10
+                transition duration-300
+                group-hover:bg-blue-500
               "
             >
-              <img
-                src="/dhaka-foreign-academy.webp"
-                alt="Dhaka Foreign Academy"
-                className="h-full w-full object-contain"
-              />
-            </div>
+              <motion.span
+                whileHover={{
+                  scale: 1.1,
+                }}
+                className="text-xl font-black italic text-white"
+              >
+                C
+              </motion.span>
+            </motion.div>
 
-            <div className="hidden leading-none sm:flex sm:flex-col">
-              <span className="text-[17px] font-bold tracking-[-0.03em] text-gray-700">
-                Dhaka Foreign Academy
-              </span>
+            <div className="leading-none">
+              <h1 className="text-[15px] font-black tracking-[0.08em] text-white">
+                THE CHECKPOINT
+              </h1>
 
-              <span className="mt-1 text-[9px] font-medium uppercase tracking-[0.25em] text-gray-400">
-                Language & Education
-              </span>
+              <p className="mt-1 text-[7px] font-medium tracking-[0.3em] text-slate-500">
+                GAMING · DINING · FITNESS
+              </p>
             </div>
           </Link>
 
-          {/* ================= DESKTOP ================= */}
+          {/* =================================================
+              DESKTOP NAV
+          ================================================== */}
 
           <div className="hidden items-center gap-1 lg:flex">
-
-            {menus.map((menu) => {
-              const hasItems =
-                Array.isArray(menu.items) && menu.items.length > 0;
-
-              const active = isActive(menu.href);
-
-              {/* NORMAL LINK */}
-
-              if (!hasItems) {
-                return (
-                  <Link
-                    key={menu.name}
-                    href={menu.href}
-                    className={`
-                      group relative
-
-                      rounded-2xl
-
-                      px-4 py-2.5
-
-                      text-sm
-                      font-medium
-
-                      transition-all
-                      duration-300
-
-                      ${
-                        active
-                          ? `
-                            bg-gradient-to-r
-                            from-[#BC002D]/12
-                            via-white/70
-                            to-[#006A4E]/12
-
-                            text-gray-950
-
-                            shadow-[0_5px_20px_rgba(0,0,0,0.07)]
-                          `
-                          : `
-                            text-gray-600
-                            hover:bg-gradient-to-r
-                            hover:from-[#BC002D]/10
-                            hover:via-white/60
-                            hover:to-[#006A4E]/10
-                            hover:text-gray-950
-                            hover:-translate-y-[1px]
-                          `
-                      }
-                    `}
-                  >
-                    {/* Active indicator */}
-
-                    {active && (
-                      <span
-                        className="
-                          absolute
-                          bottom-1
-                          left-1/2
-                          h-[2px]
-                          w-5
-                          -translate-x-1/2
-
-                          rounded-full
-
-                          bg-gradient-to-r
-                          from-[#BC002D]
-                          via-gray-500
-                          to-[#006A4E]
-
-                          shadow-[0_0_8px_rgba(0,106,78,0.35)]
-                        "
-                      />
-                    )}
-
-                    {menu.name}
-                  </Link>
-                );
-              }
-
-              {/* DROPDOWN */}
-
-              return (
-                <div
-                  key={menu.name}
-                  className="group relative"
-                >
-                  <Link
-                    href={menu.href}
-                    className={`
-                      relative
-
-                      flex
-                      items-center
-                      gap-1.5
-
-                      rounded-2xl
-
-                      px-3.5 py-2.5
-
-                      text-sm
-                      font-medium
-
-                      transition-all
-                      duration-300
-
-                      ${
-                        active
-                          ? `
-                            bg-gradient-to-r
-                            from-[#BC002D]/12
-                            via-white/70
-                            to-[#006A4E]/12
-
-                            text-gray-950
-
-                            shadow-[0_5px_20px_rgba(0,0,0,0.07)]
-                          `
-                          : `
-                            text-gray-600
-
-                            hover:-translate-y-[1px]
-
-                            hover:bg-gradient-to-r
-                            hover:from-[#BC002D]/10
-                            hover:via-white/60
-                            hover:to-[#006A4E]/10
-
-                            hover:text-gray-950
-
-                            hover:shadow-[0_8px_25px_rgba(0,0,0,0.05)]
-                          `
-                      }
-                    `}
-                  >
-                    {menu.name}
-
-                    <svg
-                      className="
-                        h-3.5 w-3.5
-                        text-gray-400
-                        transition-all
-                        duration-300
-                        group-hover:rotate-180
-                        group-hover:text-[#006A4E]
-                      "
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m6 9 6 6 6-6"
-                      />
-                    </svg>
-
-                    {/* Active underline */}
-
-                    {active && (
-                      <span
-                        className="
-                          absolute
-                          bottom-1
-                          left-1/2
-
-                          h-[2px]
-                          w-5
-
-                          -translate-x-1/2
-
-                          rounded-full
-
-                          bg-gradient-to-r
-                          from-[#BC002D]
-                          via-gray-500
-                          to-[#006A4E]
-
-                          shadow-[0_0_8px_rgba(188,0,45,0.25)]
-                        "
-                      />
-                    )}
-                  </Link>
-
-                  {/* DROPDOWN */}
-
-                  <div
-                    className="
-                      invisible
-
-                      absolute
-                      left-1/2
-                      top-full
-
-                      mt-2
-                      w-52
-
-                      -translate-x-1/2
-                      translate-y-2
-
-                      rounded-[1.5rem]
-
-                      border border-white/70
-
-                      bg-white/60
-
-                      p-2
-
-                      opacity-0
-
-                      shadow-[0_20px_60px_rgba(0,0,0,0.10)]
-
-                      backdrop-blur-[30px]
-                      backdrop-saturate-150
-
-                      transition-all
-                      duration-200
-
-                      group-hover:visible
-                      group-hover:translate-y-0
-                      group-hover:opacity-100
-                    "
-                  >
-                    {menu.items.map((item, index) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="
-                          group/item
-                          relative
-                          block
-
-                          overflow-hidden
-
-                          rounded-xl
-
-                          px-4 py-2.5
-
-                          text-sm
-                          font-medium
-                          text-gray-600
-
-                          transition-all
-                          duration-300
-
-                          hover:translate-x-1
-
-                          hover:bg-gradient-to-r
-                          hover:from-[#BC002D]/8
-                          hover:via-white/60
-                          hover:to-[#006A4E]/8
-
-                          hover:text-gray-900
-                        "
-                      >
-                        {/* Hover indicator */}
-
-                        <span
-                          className={`
-                            absolute
-                            left-1.5
-                            top-1/2
-
-                            h-1.5
-                            w-1.5
-
-                            -translate-y-1/2
-                            scale-0
-
-                            rounded-full
-
-                            transition-transform
-                            duration-300
-
-                            group-hover/item:scale-100
-
-                            ${
-                              index % 2 === 0
-                                ? "bg-[#BC002D]"
-                                : "bg-[#006A4E]"
-                            }
-                          `}
-                        />
-
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
+            {links.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="
+                  group relative
+                  rounded-lg
+                  px-4 py-2.5
+                  text-sm font-medium
+                  text-slate-400
+                  transition duration-200
+                  hover:text-white
+                "
+              >
+                {/* Hover background */}
+
+                <motion.span
+                  initial={{
+                    opacity: 0,
+                    scale: 0.85,
+                  }}
+                  whileHover={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                  className="
+                    absolute inset-0 -z-10
+                    rounded-lg
+                    bg-white/5
+                  "
+                />
+
+                {link.name}
+
+                {/* Blue underline */}
+
+                <motion.span
+                  initial={{
+                    width: 0,
+                    opacity: 0,
+                  }}
+                  whileHover={{
+                    width: 16,
+                    opacity: 1,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
+                  className="
+                    absolute
+                    bottom-1.5
+                    left-1/2
+                    h-[2px]
+                    -translate-x-1/2
+                    rounded-full
+                    bg-blue-500
+                  "
+                />
+              </Link>
+            ))}
           </div>
 
-          {/* ================= MOBILE ================= */}
+          {/* =================================================
+              DESKTOP RIGHT
+          ================================================== */}
 
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
+          <div className="hidden items-center gap-5 lg:flex">
+
+            {/* About */}
+
+            <motion.div
+              whileHover={{
+                y: -1,
+              }}
+            >
+              <Link
+                href="#about"
+                className="
+                  text-sm font-medium
+                  text-slate-400
+                  transition
+                  hover:text-white
+                "
+              >
+                About
+              </Link>
+            </motion.div>
+
+            {/* Book Now */}
+
+            <motion.div
+              whileHover={{
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.96,
+              }}
+            >
+              <Link
+                href="#booking"
+                className="
+                  group
+                  flex items-center gap-2
+                  rounded-xl
+                  bg-blue-600
+                  px-5 py-3
+                  text-xs font-bold
+                  tracking-wide
+                  text-white
+                  shadow-lg shadow-blue-600/10
+                  transition duration-300
+                  hover:bg-blue-500
+                  hover:shadow-[0_8px_30px_rgba(37,99,235,0.3)]
+                "
+              >
+                BOOK NOW
+
+                <motion.span
+                  className="inline-flex"
+                  whileHover={{
+                    x: 3,
+                    y: -3,
+                  }}
+                >
+                  <FiArrowUpRight size={16} />
+                </motion.span>
+              </Link>
+            </motion.div>
+
+          </div>
+
+          {/* =================================================
+              MOBILE MENU BUTTON
+          ================================================== */}
+
+          <motion.button
+            type="button"
+            onClick={() => setOpen(!open)}
+            whileTap={{
+              scale: 0.88,
+            }}
             className="
-              flex h-11 w-11
+              flex h-10 w-10
               items-center justify-center
-
-              rounded-full
-
-              border border-white/80
-
-              bg-white/45
-
-              shadow-[0_5px_20px_rgba(0,0,0,0.06)]
-
-              backdrop-blur-2xl
-
-              transition-all duration-300
-
-              hover:scale-105
-              hover:bg-white/70
-
+              rounded-lg
+              border border-white/10
+              bg-white/[0.03]
+              text-white
+              transition
+              hover:bg-white/[0.06]
               lg:hidden
             "
-            aria-label="Toggle navigation"
+            aria-label="Toggle navigation menu"
+            aria-expanded={open}
           >
-            {mobileOpen ? (
-              <span className="text-xl text-gray-700">
-                ×
-              </span>
-            ) : (
-              <div className="flex flex-col gap-1.5">
-                <span className="h-0.5 w-5 rounded-full bg-gray-500" />
-                <span className="h-0.5 w-5 rounded-full bg-gray-700" />
-                <span className="h-0.5 w-5 rounded-full bg-gray-500" />
-              </div>
-            )}
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+
+              {open ? (
+                <motion.span
+                  key="close"
+                  initial={{
+                    opacity: 0,
+                    rotate: -90,
+                    scale: 0.5,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    rotate: 0,
+                    scale: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    rotate: 90,
+                    scale: 0.5,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                >
+                  <FiX size={22} />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="menu"
+                  initial={{
+                    opacity: 0,
+                    rotate: 90,
+                    scale: 0.5,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    rotate: 0,
+                    scale: 1,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    rotate: -90,
+                    scale: 0.5,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                >
+                  <FiMenu size={22} />
+                </motion.span>
+              )}
+
+            </AnimatePresence>
+          </motion.button>
+
         </div>
 
-        {/* ================= MOBILE MENU ================= */}
+        {/* =====================================================
+            MOBILE MENU
+        ====================================================== */}
 
-        {mobileOpen && (
-          <div
-            className="
-              mt-3
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{
+                opacity: 0,
+                height: 0,
+              }}
+              animate={{
+                opacity: 1,
+                height: "auto",
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
+              transition={{
+                duration: 0.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="
+                overflow-hidden
+                border-t border-white/10
+                px-5 pb-5 pt-3
+                lg:hidden
+              "
+            >
 
-              rounded-[1.7rem]
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.06,
+                      delayChildren: 0.08,
+                    },
+                  },
+                }}
+                className="flex flex-col"
+              >
 
-              border border-white/70
+                {/* Navigation Links */}
 
-              bg-white/60
-
-              p-2
-
-              shadow-[0_15px_50px_rgba(0,0,0,0.08)]
-
-              backdrop-blur-[30px]
-
-              lg:hidden
-            "
-          >
-            {menus.map((menu) => {
-              const hasItems =
-                Array.isArray(menu.items) && menu.items.length > 0;
-
-              const active = isActive(menu.href);
-
-              if (!hasItems) {
-                return (
-                  <Link
-                    key={menu.name}
-                    href={menu.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`
-                      block
-                      rounded-xl
-                      px-4 py-3
-
-                      text-sm
-                      font-medium
-
-                      transition-all
-                      duration-300
-
-                      ${
-                        active
-                          ? "bg-gradient-to-r from-[#BC002D]/10 via-white/70 to-[#006A4E]/10 text-gray-950 shadow-sm"
-                          : "text-gray-600 hover:bg-white/60 hover:text-gray-900"
-                      }
-                    `}
+                {links.map((link) => (
+                  <motion.div
+                    key={link.name}
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                        x: -15,
+                      },
+                      visible: {
+                        opacity: 1,
+                        x: 0,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                   >
-                    {menu.name}
-                  </Link>
-                );
-              }
-
-              return (
-                <details
-                  key={menu.name}
-                  className="group"
-                >
-                  <div className="flex items-center">
-
                     <Link
-                      href={menu.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`
-                        flex-1
-                        rounded-xl
-                        px-4 py-3
-
-                        text-sm
-                        font-medium
-
-                        transition-all
-                        duration-300
-
-                        ${
-                          active
-                            ? "bg-gradient-to-r from-[#BC002D]/10 via-white/70 to-[#006A4E]/10 text-gray-950"
-                            : "text-gray-600 hover:bg-white/60"
-                        }
-                      `}
-                    >
-                      {menu.name}
-                    </Link>
-
-                    <summary
+                      href={link.href}
+                      onClick={() => setOpen(false)}
                       className="
-                        flex
-                        cursor-pointer
-                        list-none
-
-                        items-center
-                        justify-center
-
-                        rounded-xl
-
-                        px-4 py-3
-
-                        text-gray-400
-
-                        transition-all
-
-                        hover:bg-white/60
+                        group
+                        flex items-center
+                        rounded-lg
+                        px-3 py-3
+                        text-sm font-medium
+                        text-slate-300
+                        transition
+                        hover:bg-white/5
+                        hover:text-white
                       "
                     >
-                      <svg
-                        className="
-                          h-4 w-4
+                      {link.name}
 
-                          transition-transform
-                          duration-300
-
-                          group-open:rotate-180
-                        "
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                      <motion.span
+                        initial={{
+                          opacity: 0,
+                          x: -4,
+                        }}
+                        whileHover={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        className="ml-auto"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m6 9 6 6 6-6"
-                        />
-                      </svg>
-                    </summary>
-                  </div>
+                        <FiArrowUpRight size={14} />
+                      </motion.span>
+                    </Link>
+                  </motion.div>
+                ))}
 
-                  <div className="px-3 pb-2">
-                    {menu.items.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className="
-                          block
+                {/* About */}
 
-                          rounded-xl
+                <motion.div
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      x: -15,
+                    },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 0.3,
+                  }}
+                >
+                  <Link
+                    href="#about"
+                    onClick={() => setOpen(false)}
+                    className="
+                      group
+                      flex items-center
+                      rounded-lg
+                      px-3 py-3
+                      text-sm font-medium
+                      text-slate-300
+                      transition
+                      hover:bg-white/5
+                      hover:text-white
+                    "
+                  >
+                    About
 
-                          px-4 py-2.5
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                      }}
+                      whileHover={{
+                        opacity: 1,
+                      }}
+                      className="ml-auto"
+                    >
+                      <FiArrowUpRight size={14} />
+                    </motion.span>
+                  </Link>
+                </motion.div>
 
-                          text-sm
-                          text-gray-500
+                {/* Mobile Book Button */}
 
-                          transition-all
-                          duration-300
+                <motion.div
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      y: 10,
+                    },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 0.4,
+                  }}
+                >
+                  <motion.div
+                    whileTap={{
+                      scale: 0.97,
+                    }}
+                  >
+                    <Link
+                      href="#booking"
+                      onClick={() => setOpen(false)}
+                      className="
+                        group
+                        mt-3
+                        flex items-center
+                        justify-center gap-2
+                        rounded-xl
+                        bg-blue-600
+                        px-5 py-3
+                        text-sm font-bold
+                        text-white
+                        shadow-lg shadow-blue-600/10
+                        transition
+                        hover:bg-blue-500
+                      "
+                    >
+                      BOOK NOW
 
-                          hover:translate-x-1
-                          hover:bg-white/60
-                          hover:text-gray-900
-                        "
+                      <motion.span
+                        whileHover={{
+                          x: 3,
+                          y: -3,
+                        }}
                       >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              );
-            })}
-          </div>
-        )}
+                        <FiArrowUpRight size={17} />
+                      </motion.span>
+                    </Link>
+                  </motion.div>
+                </motion.div>
+
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </nav>
-    </header>
+    </motion.header>
   );
 }
+

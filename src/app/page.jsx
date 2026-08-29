@@ -1,8 +1,10 @@
-import Courses from "@/components/home/Courses";
-import CTA from "@/components/home/CTA";
+
+import Features from "@/components/home/Features";
+import Gaming from "@/components/home/Gaming";
+
 import Hero from "@/components/home/Hero";
-import JLPTRoadmap from "@/components/home/JLPTRoadmap";
-import SuccessStories from "@/components/home/SuccessStories";
+import Resturant from "@/components/home/Resturant";
+import Gym from "@/components/home/Gym";
 
 
 
@@ -13,14 +15,14 @@ export default function Home() {
 
       <main>
         <Hero />
+        <Features />
+        <Gaming />
 
-        <Courses />
+        <Resturant/>
 
-        <JLPTRoadmap />
+        <Gym />
 
-        <SuccessStories />
 
-        <CTA/>
       </main>
 
     </>
