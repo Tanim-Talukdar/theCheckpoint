@@ -17,16 +17,16 @@ import {
 
 const images = {
   gym:
-    "https://www.lacupulaandorra.com/assets/hero-fitness-T_z8XnPI.jpg",
+    "/gym/gym2.jpeg",
 
   pool:
-    "https://clubmetropolitan.com/wp-content/uploads/2022/05/CABECERA.jpg",
+    "/swimmingpool/swimmingpool2.jpeg",
 
   steam:
     "https://ssaqua.in/images/luxury-steam-room-design.webp",
 
   cinema:
-    "https://mkbbespokeaudio.com/cdn/shop/articles/Private_Cinema.png?v=1777037012&width=500",
+    "/gaming/movie.jpeg",
 };
 
 

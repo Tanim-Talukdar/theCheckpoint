@@ -15,7 +15,7 @@ import {
 const slides = [
   {
     image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2200&q=90",
+      "/view7.webp",
     eyebrow: "01 / GAMING",
     title: "PLAY",
     description:
@@ -23,7 +23,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=2200&q=90",
+      "/view6.jpeg",
     eyebrow: "02 / DINING",
     title: "EAT",
     description:
@@ -31,7 +31,7 @@ const slides = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2200&q=90",
+      "/view11.jpg",
     eyebrow: "03 / FITNESS",
     title: "TRAIN",
     description:

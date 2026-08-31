@@ -11,18 +11,16 @@ import {
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Gaming", href: "#gaming" },
-  { name: "Restaurant", href: "#restaurant" },
-  { name: "Gym", href: "#gym" },
-  { name: "Events", href: "#events" },
-  { name: "About", href: "#about" },
+  { name: "Gaming", href: "/gaming" },
+  { name: "Restaurant", href: "/restaurant" },
+  { name: "Gym", href: "/gym" },
+  { name: "About", href: "/about" },
 ];
 
 const services = [
-  { name: "Gaming Lounge", href: "#gaming" },
-  { name: "Restaurant", href: "#restaurant" },
-  { name: "Gym", href: "#gym" },
-  { name: "Private Events", href: "#events" },
+  { name: "Gaming Lounge", href: "/gaming" },
+  { name: "Restaurant", href: "/restaurant" },
+  { name: "Gym", href: "/gym" },
 ];
 
 export default function Footer() {
@@ -104,14 +102,14 @@ export default function Footer() {
             <div className="mt-7 flex items-center gap-3">
 
               <SocialIcon
-                href="#"
+                href="https://www.instagram.com/checkpoint_bd"
                 label="Instagram"
               >
                 <FiInstagram size={17} />
               </SocialIcon>
 
               <SocialIcon
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61591601052508"
                 label="Facebook"
               >
                 <FiFacebook size={17} />
@@ -186,12 +184,12 @@ export default function Footer() {
 
               <ContactItem
                 icon={<FiMapPin size={17} />}
-                text="Dhaka, Bangladesh"
+                text="Bashundhara R/A, Block C, Road 2, House 1/f, Dhaka, Bangladesh 1229"
               />
 
               <ContactItem
                 icon={<FiPhone size={17} />}
-                text="+880 1XXX-XXXXXX"
+                text="+880 1844-240483"
               />
 
               <ContactItem

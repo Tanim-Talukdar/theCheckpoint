@@ -1,6 +1,6 @@
 
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,6 +30,10 @@ const links = [
   {
     name: "Gym",
     href: "/gym",
+  },
+  {
+    name: "Contact",
+    href: "/contact",
   },
 
 ];
@@ -69,37 +73,34 @@ export default function Navbar() {
             href="/"
             className="group flex items-center gap-3"
           >
-            <motion.div
-              whileHover={{
-                scale: 1.08,
-                rotate: -4,
-              }}
-              whileTap={{
-                scale: 0.94,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 18,
-              }}
-              className="
-                flex h-10 w-10 items-center justify-center
-                rounded-lg
-                bg-blue-600
-                shadow-lg shadow-blue-600/10
-                transition duration-300
-                group-hover:bg-blue-500
-              "
-            >
-              <motion.span
-                whileHover={{
-                  scale: 1.1,
-                }}
-                className="text-xl font-black italic text-white"
-              >
-                C
-              </motion.span>
-            </motion.div>
+<motion.div
+  whileHover={{
+    scale: 1.08,
+    rotate: -4,
+  }}
+  whileTap={{
+    scale: 0.94,
+  }}
+  transition={{
+    type: "spring",
+    stiffness: 400,
+    damping: 18,
+  }}
+  className="
+    flex h-10 w-10 items-center justify-center
+    overflow-hidden
+    rounded-lg
+    shadow-lg shadow-blue-600/10
+  "
+>
+  <Image
+    src="/logo.png"
+    alt="Cirmatch Logo"
+    width={40}
+    height={40}
+    className="h-full w-full object-cover"
+  />
+</motion.div>
 
             <div className="leading-none">
               <h1 className="text-[15px] font-black tracking-[0.08em] text-white">

@@ -138,7 +138,7 @@ export default function GymSection() {
               className="group relative overflow-hidden rounded-[2rem] border border-white/10"
             >
               <Image
-                src="/gym.jpg"
+                src="/gym/gym2.jpeg"
                 alt="The Checkpoint Premium Gym"
                 width={1200}
                 height={800}

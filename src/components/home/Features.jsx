@@ -18,7 +18,7 @@ const features = [
     description:
       "High-performance PCs, consoles, competitive setups and immersive gaming experiences.",
     image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=90",
+      "/gaming/racingsimulator.jpeg",
     icon: FiMonitor,
     href: "/gaming",
   },
@@ -29,7 +29,7 @@ const features = [
     description:
       "Great food, drinks and a place to chill between every match.",
     image:
-      "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=90",
+      "/view8.jpeg",
     icon: FiCoffee,
     href: "/restaurant",
   },
@@ -40,7 +40,7 @@ const features = [
     description:
       "Train harder, get stronger and keep the grind going outside the game.",
     image:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=90",
+      "/view11.jpg",
     icon: FiActivity,
     href: "/gym",
   },

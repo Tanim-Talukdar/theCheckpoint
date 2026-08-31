@@ -466,7 +466,7 @@ export default function Restaurant() {
               whileHover={{
                 scale: 1.05,
               }}
-              src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=2200&q=90"
+              src="/view8.jpeg"
               alt="Restaurant dining experience"
               className="
                 absolute

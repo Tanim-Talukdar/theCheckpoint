@@ -3,8 +3,8 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 
 export const metadata = {
-  title: "Language Coaching",
-  description: "Learn languages with expert language coaching.",
+  title: "The Checkpoint",
+  description: "Bangladesh's first premium Gaming Lounge + Restaurant + Gym, the ultimate hangout spot!",
 };
 
 export default function RootLayout({ children }) {

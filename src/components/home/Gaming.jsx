@@ -250,7 +250,7 @@ export default function Gaming() {
             {/* Image */}
 
             <motion.img
-              src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=2200&q=90"
+              src="/view4.webp"
               alt="Gaming setup"
               initial={{
                 scale: 1.12,
