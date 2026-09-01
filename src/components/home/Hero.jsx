@@ -12,42 +12,54 @@ import {
   FiPlay,
 } from "react-icons/fi";
 
+/* =========================================================
+   HERO SLIDES
+   ========================================================= */
+
 const slides = [
   {
-    image:
-      "/view7.webp",
+    image: "/view7.webp",
+    alt: "The Checkpoint gaming zone in Dhaka with high-performance gaming PCs and racing simulator",
     eyebrow: "01 / GAMING",
     title: "PLAY",
     description:
-      "High-performance gaming. Competitive setups. Unforgettable sessions.",
+      "Experience premium PC gaming, competitive setups and racing simulator experiences at The Checkpoint in Dhaka.",
   },
+
   {
-    image:
-      "/view6.jpeg",
-    eyebrow: "02 / DINING",
+    image: "/view6.jpeg",
+    alt: "The Checkpoint premium entertainment and common area in Bashundhara Dhaka",
+    eyebrow: "02 / EXPERIENCE",
     title: "EAT",
     description:
-      "Good food, cold drinks and the perfect place to recharge between games.",
+      "Relax, eat, enjoy cold drinks and spend time with friends in The Checkpoint's premium entertainment space.",
   },
+
   {
-    image:
-      "/view11.jpg",
+    image: "/view11.jpg",
+    alt: "The Checkpoint gym and fitness facility in Bashundhara Dhaka",
     eyebrow: "03 / FITNESS",
     title: "TRAIN",
     description:
-      "Push your limits. Build your strength. Level up outside the game.",
+      "Train, build your strength and stay active at The Checkpoint gym in Bashundhara, Dhaka.",
   },
 ];
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
 
 const slideVariants = {
   enter: {
     opacity: 0,
     scale: 1.08,
   },
+
   center: {
     opacity: 1,
     scale: 1,
   },
+
   exit: {
     opacity: 0,
     scale: 1.04,
@@ -59,9 +71,11 @@ const contentVariants = {
     opacity: 0,
     y: 35,
   },
+
   visible: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.7,
       ease: [0.22, 1, 0.36, 1],
@@ -71,6 +85,7 @@ const contentVariants = {
 
 const staggerContainer = {
   hidden: {},
+
   visible: {
     transition: {
       staggerChildren: 0.12,
@@ -78,8 +93,16 @@ const staggerContainer = {
   },
 };
 
+/* =========================================================
+   HERO
+   ========================================================= */
+
 export default function Hero() {
   const [active, setActive] = useState(0);
+
+  /* =======================================================
+     AUTO SLIDER
+  ======================================================= */
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -90,6 +113,10 @@ export default function Hero() {
   }, []);
 
   const slide = slides[active];
+
+  /* =======================================================
+     SLIDER CONTROLS
+  ======================================================= */
 
   const previousSlide = () => {
     setActive((current) =>
@@ -102,14 +129,32 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#030712] text-white">
+    <section
+      aria-labelledby="checkpoint-main-heading"
+      className="relative min-h-screen overflow-hidden bg-[#030712] text-white"
+    >
+      {/* =====================================================
+          SEO H1
+
+          This is visually hidden but available to search engines
+          and screen readers.
+
+          The visual PLAY / EAT / TRAIN design remains unchanged.
+      ====================================================== */}
+
+      <h1
+        id="checkpoint-main-heading"
+        className="sr-only"
+      >
+        The Checkpoint — Premium Gaming, Entertainment and Lifestyle
+        Destination in Dhaka
+      </h1>
 
       {/* =====================================================
           BACKGROUND SLIDER
       ====================================================== */}
 
       <div className="absolute inset-0">
-
         <AnimatePresence mode="sync">
           <motion.div
             key={active}
@@ -122,6 +167,7 @@ export default function Hero() {
                 duration: 1.2,
                 ease: "easeInOut",
               },
+
               scale: {
                 duration: 6,
                 ease: "linear",
@@ -131,7 +177,12 @@ export default function Hero() {
           >
             <motion.img
               src={slide.image}
-              alt=""
+              alt={slide.alt}
+              width={1920}
+              height={1080}
+              fetchPriority={active === 0 ? "high" : "auto"}
+              loading={active === 0 ? "eager" : "lazy"}
+              decoding="async"
               initial={{
                 scale: 1.04,
               }}
@@ -148,17 +199,28 @@ export default function Hero() {
         </AnimatePresence>
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/55" />
+        <div
+          className="absolute inset-0 bg-black/55"
+          aria-hidden="true"
+        />
 
         {/* Blue tint */}
-        <div className="absolute inset-0 bg-blue-950/20 mix-blend-multiply" />
+        <div
+          className="absolute inset-0 bg-blue-950/20 mix-blend-multiply"
+          aria-hidden="true"
+        />
 
         {/* Left gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030712] via-[#030712]/60 to-transparent" />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#030712] via-[#030712]/60 to-transparent"
+          aria-hidden="true"
+        />
 
         {/* Bottom gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#030712] to-transparent" />
-
+        <div
+          className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#030712] to-transparent"
+          aria-hidden="true"
+        />
       </div>
 
       {/* =====================================================
@@ -166,7 +228,6 @@ export default function Hero() {
       ====================================================== */}
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-[1600px] items-center px-6 pb-20 pt-32 sm:px-10 lg:px-16">
-
         <div className="w-full">
 
           {/* =================================================
@@ -179,29 +240,29 @@ export default function Hero() {
             variants={contentVariants}
             className="mb-8 flex items-center gap-4"
           >
-
             <div className="flex items-center gap-3">
-
-              <span className="relative flex h-2 w-2">
-
+              <span
+                className="relative flex h-2 w-2"
+                aria-hidden="true"
+              >
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
 
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
-
               </span>
 
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">
                 Now Open
               </span>
-
             </div>
 
-            <span className="h-px w-12 bg-white/20" />
+            <span
+              className="h-px w-12 bg-white/20"
+              aria-hidden="true"
+            />
 
             <span className="hidden text-[10px] uppercase tracking-[0.25em] text-white/40 sm:block">
-              Bangladesh's First Premium Gaming Lounge
+              Bangladesh&apos;s Premium Gaming & Entertainment Destination
             </span>
-
           </motion.div>
 
           {/* =================================================
@@ -210,7 +271,9 @@ export default function Hero() {
 
           <div className="grid items-end gap-10 lg:grid-cols-[1fr_380px]">
 
-            {/* LEFT */}
+            {/* =================================================
+                LEFT
+            ================================================= */}
 
             <motion.div
               key={`content-${active}`}
@@ -228,32 +291,46 @@ export default function Hero() {
                 {slide.eyebrow}
               </motion.div>
 
-              {/* BIG TITLE */}
+              {/* =================================================
+                  VISUAL HERO TITLE
 
-              <motion.h1
+                  Kept exactly as your original design.
+              ================================================= */}
+
+              <motion.div
                 variants={contentVariants}
+                aria-hidden="true"
                 className="text-[clamp(6rem,16vw,15rem)] font-black leading-[0.72] tracking-[-0.07em]"
               >
                 {slide.title}
                 <span className="text-blue-500">.</span>
-              </motion.h1>
+              </motion.div>
 
-              {/* Description */}
+              {/* =================================================
+                  SEO DESCRIPTION
+              ================================================= */}
 
               <motion.p
                 variants={contentVariants}
                 className="mt-10 max-w-lg text-sm leading-7 text-white/60 sm:text-base"
               >
-                {slide.description}
+                <strong className="font-semibold text-white/80">
+                  The Checkpoint
+                </strong>{" "}
+                is a premium gaming and entertainment destination in
+                Bashundhara, Dhaka, featuring a gaming zone, gaming lounge,
+                VR zone, movie theater, card game zone, racing simulator,
+                restaurant, gym and swimming pool.
               </motion.p>
 
-              {/* CTA */}
+              {/* =================================================
+                  CTA
+              ================================================= */}
 
               <motion.div
                 variants={contentVariants}
                 className="mt-8 flex flex-wrap gap-3"
               >
-
                 <motion.div
                   whileHover={{
                     scale: 1.03,
@@ -263,13 +340,13 @@ export default function Hero() {
                   }}
                 >
                   <Link
-                    href="#booking"
+                    href="/contact"
+                    aria-label="Contact The Checkpoint in Dhaka"
                     className="group flex items-center gap-3 rounded-xl bg-blue-600 px-6 py-4 text-xs font-black tracking-wide transition-all duration-300 hover:bg-blue-500 hover:shadow-[0_0_40px_rgba(37,99,235,0.35)]"
                   >
-                    BOOK YOUR EXPERIENCE
+                    Contact Us
 
                     <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white/10">
-
                       <motion.span
                         whileHover={{
                           x: 3,
@@ -278,12 +355,12 @@ export default function Hero() {
                       >
                         <FiArrowUpRight size={14} />
                       </motion.span>
-
                     </span>
                   </Link>
                 </motion.div>
 
                 <motion.button
+                  type="button"
                   whileHover={{
                     scale: 1.03,
                     backgroundColor: "rgba(255,255,255,0.1)",
@@ -291,9 +368,9 @@ export default function Hero() {
                   whileTap={{
                     scale: 0.97,
                   }}
+                  aria-label="Watch The Checkpoint experience"
                   className="flex items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-6 py-4 text-xs font-bold backdrop-blur-md transition"
                 >
-
                   <motion.span
                     whileHover={{
                       rotate: 10,
@@ -304,11 +381,8 @@ export default function Hero() {
                   </motion.span>
 
                   WATCH THE EXPERIENCE
-
                 </motion.button>
-
               </motion.div>
-
             </motion.div>
 
             {/* =================================================
@@ -332,7 +406,6 @@ export default function Hero() {
               }}
               className="hidden lg:block"
             >
-
               <div className="border-l border-white/20 pl-8">
 
                 <motion.div
@@ -348,7 +421,8 @@ export default function Hero() {
                   className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.25em] text-white/40"
                 >
                   <FiMapPin size={13} />
-                  Bangladesh
+
+                  Bashundhara, Dhaka
                 </motion.div>
 
                 <p className="mt-5 text-2xl font-bold leading-tight">
@@ -361,15 +435,13 @@ export default function Hero() {
                 </p>
 
                 <p className="mt-4 text-sm leading-6 text-white/40">
-                  Gaming lounge, restaurant and gym —
-                  built for people who want more from
-                  their hangout.
+                  Gaming lounge, movie theater, VR zone, card games,
+                  restaurant, gym and swimming pool — all in one premium
+                  destination in Dhaka.
                 </p>
 
               </div>
-
             </motion.div>
-
           </div>
 
           {/* =================================================
@@ -394,12 +466,16 @@ export default function Hero() {
 
             {/* Experience selector */}
 
-            <div className="flex gap-2 sm:gap-8">
-
+            <div
+              className="flex gap-2 sm:gap-8"
+              role="tablist"
+              aria-label="The Checkpoint experiences"
+            >
               {slides.map((item, index) => (
-
                 <motion.button
                   key={item.eyebrow}
+                  type="button"
+                  role="tab"
                   onClick={() => setActive(index)}
                   whileHover={{
                     y: -2,
@@ -407,9 +483,12 @@ export default function Hero() {
                   whileTap={{
                     scale: 0.95,
                   }}
+                  aria-label={`View ${item.eyebrow
+                    .split(" / ")[1]
+                    .toLowerCase()} experience`}
+                  aria-selected={index === active}
                   className="group text-left"
                 >
-
                   <div className="mb-2 flex items-center gap-2">
 
                     <span
@@ -431,13 +510,14 @@ export default function Hero() {
                     >
                       {item.eyebrow.split(" / ")[1]}
                     </span>
-
                   </div>
 
                   {/* Progress */}
 
-                  <div className="relative h-[2px] w-16 overflow-hidden bg-white/10 sm:w-28">
-
+                  <div
+                    className="relative h-[2px] w-16 overflow-hidden bg-white/10 sm:w-28"
+                    aria-hidden="true"
+                  >
                     {index === active && (
                       <motion.div
                         key={`progress-${active}`}
@@ -454,13 +534,9 @@ export default function Hero() {
                         className="absolute inset-y-0 left-0 bg-blue-500"
                       />
                     )}
-
                   </div>
-
                 </motion.button>
-
               ))}
-
             </div>
 
             {/* Arrows */}
@@ -468,6 +544,7 @@ export default function Hero() {
             <div className="flex gap-2">
 
               <motion.button
+                type="button"
                 onClick={previousSlide}
                 whileHover={{
                   scale: 1.08,
@@ -476,13 +553,14 @@ export default function Hero() {
                 whileTap={{
                   scale: 0.9,
                 }}
+                aria-label="Previous The Checkpoint experience"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur transition hover:bg-white/10 hover:text-white"
-                aria-label="Previous slide"
               >
                 <FiChevronLeft size={17} />
               </motion.button>
 
               <motion.button
+                type="button"
                 onClick={nextSlide}
                 whileHover={{
                   scale: 1.08,
@@ -491,18 +569,15 @@ export default function Hero() {
                 whileTap={{
                   scale: 0.9,
                 }}
+                aria-label="Next The Checkpoint experience"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/60 backdrop-blur transition hover:bg-white/10 hover:text-white"
-                aria-label="Next slide"
               >
                 <FiChevronRight size={17} />
               </motion.button>
 
             </div>
-
           </motion.div>
-
         </div>
-
       </div>
 
       {/* =====================================================
@@ -521,6 +596,7 @@ export default function Hero() {
           duration: 1,
         }}
         className="pointer-events-none absolute bottom-0 right-0 hidden h-40 w-40 border-b border-r border-blue-500/30 lg:block"
+        aria-hidden="true"
       />
 
       <motion.div
@@ -535,9 +611,8 @@ export default function Hero() {
           duration: 1,
         }}
         className="pointer-events-none absolute left-0 top-32 hidden h-32 w-32 border-l border-t border-blue-500/20 lg:block"
+        aria-hidden="true"
       />
-
     </section>
   );
 }
-

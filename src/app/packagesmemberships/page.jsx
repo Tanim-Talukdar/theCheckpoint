@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -12,27 +13,29 @@ import {
 } from "react-icons/fi";
 
 /* =========================================================
-   ONLINE IMAGES
-========================================================= */
+   WHATSAPP
+   ========================================================= */
+
+const WHATSAPP_NUMBER = "8801844240483";
+
+/* =========================================================
+   ONLINE / LOCAL IMAGES
+   ========================================================= */
 
 const images = {
-  gym:
-    "/gym/gym2.jpeg",
+  gym: "/gym/gym2.jpeg",
 
-  pool:
-    "/swimmingpool/swimmingpool2.jpeg",
+  pool: "/swimmingpool/swimmingpool2.jpeg",
 
   steam:
     "https://ssaqua.in/images/luxury-steam-room-design.webp",
 
-  cinema:
-    "/gaming/movie.jpeg",
+  cinema: "/gaming/movie.jpeg",
 };
-
 
 /* =========================================================
    MEMBERSHIP DATA
-========================================================= */
+   ========================================================= */
 
 const packages = [
   {
@@ -40,8 +43,10 @@ const packages = [
     title: "GYM ONLY",
     icon: FiActivity,
     image: images.gym,
+
     description:
       "Full access to our premium gym facilities and equipment.",
+
     options: [
       {
         name: "Day Pass",
@@ -59,8 +64,10 @@ const packages = [
     title: "SWIMMING POOL ONLY",
     icon: FiDroplet,
     image: images.pool,
+
     description:
       "Enjoy access to our swimming pool for fitness and recreation.",
+
     options: [
       {
         name: "Day Pass",
@@ -78,9 +85,12 @@ const packages = [
     title: "GYM + SWIMMING POOL",
     icon: FiActivity,
     image: images.gym,
+
     featured: true,
+
     description:
       "The complete fitness experience with gym and swimming pool access.",
+
     options: [
       {
         name: "Day Pass",
@@ -98,8 +108,10 @@ const packages = [
     title: "STEAM BATH",
     icon: FiWind,
     image: images.steam,
+
     description:
       "Relax and recover with a premium steam bath experience.",
+
     options: [
       {
         name: "15 min Session",
@@ -109,12 +121,16 @@ const packages = [
   },
 ];
 
+/* =========================================================
+   MOVIE PACKAGES
+   ========================================================= */
 
 const moviePackages = [
   {
     name: "1 Ticket",
     price: "250",
   },
+
   {
     name: "Private Viewing",
     description: "50 seats + movie of choice",
@@ -122,10 +138,35 @@ const moviePackages = [
   },
 ];
 
+/* =========================================================
+   WHATSAPP HELPER
+   ========================================================= */
+
+function createWhatsAppLink({
+  packageName,
+  optionName,
+  price,
+}) {
+  const message = `Hello The Checkpoint! 👋
+
+I am interested in purchasing the following:
+
+Package: ${packageName}
+Option: ${optionName}
+Price: ${price} BDT
+
+Please provide me with the details on how I can purchase it.
+
+Thank you!`;
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    message
+  )}`;
+}
 
 /* =========================================================
    PAGE
-========================================================= */
+   ========================================================= */
 
 export default function MembershipPage() {
   return (
@@ -157,11 +198,9 @@ export default function MembershipPage() {
 
         </div>
 
-
         {/* Blue glow */}
 
         <div className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-blue-600/[0.12] blur-[150px]" />
-
 
         {/* Grid */}
 
@@ -174,7 +213,6 @@ export default function MembershipPage() {
             [background-size:70px_70px]
           "
         />
-
 
         {/* Hero Content */}
 
@@ -191,7 +229,6 @@ export default function MembershipPage() {
             </span>
 
           </div>
-
 
           {/* Heading */}
 
@@ -214,7 +251,6 @@ export default function MembershipPage() {
             </span>
           </h1>
 
-
           {/* Description */}
 
           <div className="mt-10 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -224,7 +260,6 @@ export default function MembershipPage() {
               Choose the membership that fits your lifestyle and
               start your next level.
             </p>
-
 
             <div className="flex items-center gap-3 text-xs text-white/40">
 
@@ -239,7 +274,6 @@ export default function MembershipPage() {
         </div>
 
       </section>
-
 
       {/* =====================================================
           MEMBERSHIP PACKAGES
@@ -272,14 +306,12 @@ export default function MembershipPage() {
 
             </div>
 
-
             <p className="max-w-sm text-sm leading-6 text-white/30">
               Flexible access designed for training,
               recreation, recovery and entertainment.
             </p>
 
           </div>
-
 
           {/* Cards */}
 
@@ -297,7 +329,6 @@ export default function MembershipPage() {
         </div>
 
       </section>
-
 
       {/* =====================================================
           MEMBERSHIP INFORMATION
@@ -332,7 +363,6 @@ export default function MembershipPage() {
 
               </div>
 
-
               <div className="space-y-3 text-sm text-white/45">
 
                 <p>
@@ -346,7 +376,6 @@ export default function MembershipPage() {
               </div>
 
             </div>
-
 
             <Link
               href="/contact"
@@ -390,7 +419,6 @@ export default function MembershipPage() {
 
       </section>
 
-
       {/* =====================================================
           MOVIE THEATER
       ===================================================== */}
@@ -419,7 +447,6 @@ export default function MembershipPage() {
             </h2>
 
           </div>
-
 
           {/* Cinema */}
 
@@ -450,13 +477,11 @@ export default function MembershipPage() {
                 "
               />
 
-
               {/* Overlay */}
 
               <div className="absolute inset-0 bg-black/40" />
 
               <div className="absolute inset-0 bg-gradient-to-t from-[#080F1C] via-transparent to-black/10" />
-
 
               {/* Cinema info */}
 
@@ -478,95 +503,101 @@ export default function MembershipPage() {
 
             </div>
 
-
             {/* Movie Packages */}
 
             <div className="divide-y divide-white/10">
 
-              {moviePackages.map((item) => (
+              {moviePackages.map((item) => {
 
-                <div
-                  key={item.name}
-                  className="
-                    group
-                    flex
-                    flex-col
-                    gap-6
-                    p-6
-                    transition
-                    duration-300
-                    hover:bg-blue-500/[0.035]
-                    sm:flex-row
-                    sm:items-center
-                    sm:justify-between
-                    sm:p-8
-                  "
-                >
+                const whatsappLink = createWhatsAppLink({
+                  packageName: "Movie Theater",
+                  optionName: item.name,
+                  price: item.price,
+                });
 
-                  <div>
+                return (
+                  <div
+                    key={item.name}
+                    className="
+                      group
+                      flex
+                      flex-col
+                      gap-6
+                      p-6
+                      transition
+                      duration-300
+                      hover:bg-blue-500/[0.035]
+                      sm:flex-row
+                      sm:items-center
+                      sm:justify-between
+                      sm:p-8
+                    "
+                  >
 
-                    <h4 className="text-base font-bold">
-                      {item.name}
-                    </h4>
+                    <div>
 
-                    {item.description && (
-                      <p className="mt-2 text-xs text-white/30">
-                        {item.description}
-                      </p>
-                    )}
+                      <h4 className="text-base font-bold">
+                        {item.name}
+                      </h4>
 
-                  </div>
-
-
-                  <div className="flex items-center justify-between gap-8 sm:justify-end">
-
-                    <div className="whitespace-nowrap">
-
-                      <span className="text-2xl font-black">
-                        {item.price}
-                      </span>
-
-                      <span className="ml-2 text-[10px] font-bold text-white/30">
-                        BDT
-                      </span>
+                      {item.description && (
+                        <p className="mt-2 text-xs text-white/30">
+                          {item.description}
+                        </p>
+                      )}
 
                     </div>
 
+                    <div className="flex items-center justify-between gap-8 sm:justify-end">
 
-                    <Link
-                      href={`/contact?package=${encodeURIComponent(
-                        `Movie Theater - ${item.name}`
-                      )}`}
-                      className="
-                        flex
-                        h-10
-                        items-center
-                        gap-2
-                        rounded-lg
-                        border
-                        border-white/10
-                        px-4
-                        text-[10px]
-                        font-bold
-                        tracking-wide
-                        text-white/60
-                        transition
-                        hover:border-blue-500/40
-                        hover:bg-blue-500
-                        hover:text-white
-                      "
-                    >
-                      INQUIRE
+                      <div className="whitespace-nowrap">
 
-                      <FiArrowUpRight size={13} />
+                        <span className="text-2xl font-black">
+                          {item.price}
+                        </span>
 
-                    </Link>
+                        <span className="ml-2 text-[10px] font-bold text-white/30">
+                          BDT
+                        </span>
+
+                      </div>
+
+                      {/* MOVIE WHATSAPP BUTTON */}
+
+                      <a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="
+                          flex
+                          h-10
+                          items-center
+                          gap-2
+                          rounded-lg
+                          border
+                          border-white/10
+                          px-4
+                          text-[10px]
+                          font-bold
+                          tracking-wide
+                          text-white/60
+                          transition
+                          hover:border-blue-500/40
+                          hover:bg-blue-500
+                          hover:text-white
+                        "
+                      >
+                        BUY
+
+                        <FiArrowUpRight size={13} />
+
+                      </a>
+
+                    </div>
 
                   </div>
-
-                </div>
-
-              ))}
+                );
+              })}
 
             </div>
 
@@ -576,7 +607,6 @@ export default function MembershipPage() {
 
       </section>
 
-
       {/* =====================================================
           FINAL CTA
       ===================================================== */}
@@ -585,13 +615,11 @@ export default function MembershipPage() {
 
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-600/[0.08] blur-[120px]" />
 
-
         <div className="relative mx-auto max-w-4xl text-center">
 
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-400">
             Ready to level up?
           </p>
-
 
           <h2 className="mt-5 text-5xl font-black leading-[0.9] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
 
@@ -604,12 +632,10 @@ export default function MembershipPage() {
 
           </h2>
 
-
           <p className="mx-auto mt-7 max-w-md text-sm leading-7 text-white/40">
             Want to become a member? Contact our team and
-            we'll help you choose the right package.
+            we&apos;ll help you choose the right package.
           </p>
-
 
           <Link
             href="/contact"
@@ -658,7 +684,6 @@ export default function MembershipPage() {
   );
 }
 
-
 /* =========================================================
    MEMBERSHIP CARD
 ========================================================= */
@@ -675,11 +700,13 @@ function MembershipCard({ item }) {
         overflow-hidden
         rounded-[2rem]
         border
+
         ${
           item.featured
             ? "border-blue-500/40 bg-blue-500/[0.055]"
             : "border-white/10 bg-[#080F1C]"
         }
+
         transition
         duration-500
         hover:-translate-y-1.5
@@ -695,6 +722,7 @@ function MembershipCard({ item }) {
         className={`
           relative
           overflow-hidden
+
           ${
             item.featured
               ? "h-64 sm:h-72"
@@ -716,13 +744,11 @@ function MembershipCard({ item }) {
           "
         />
 
-
         {/* Dark overlay */}
 
         <div className="absolute inset-0 bg-black/25" />
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#080F1C] via-transparent to-black/10" />
-
 
         {/* Featured badge */}
 
@@ -746,7 +772,6 @@ function MembershipCard({ item }) {
             BEST VALUE
           </div>
         )}
-
 
         {/* Category */}
 
@@ -774,7 +799,6 @@ function MembershipCard({ item }) {
 
       </div>
 
-
       {/* =====================================================
           CONTENT
       ===================================================== */}
@@ -799,7 +823,6 @@ function MembershipCard({ item }) {
             group-hover:bg-blue-500/[0.15]
           "
         />
-
 
         {/* Icon */}
 
@@ -826,13 +849,11 @@ function MembershipCard({ item }) {
           <Icon size={21} />
         </div>
 
-
         {/* Category */}
 
         <p className="relative mt-7 text-[9px] font-bold tracking-[0.3em] text-blue-400">
           {item.category}
         </p>
-
 
         {/* Title */}
 
@@ -841,104 +862,115 @@ function MembershipCard({ item }) {
           <span className="text-blue-500">.</span>
         </h3>
 
-
         {/* Description */}
 
         <p className="relative mt-4 max-w-md text-sm leading-6 text-white/35">
           {item.description}
         </p>
 
-
-        {/* Pricing */}
+        {/* =================================================
+            PRICING
+        ================================================= */}
 
         <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/10">
 
-          {item.options.map((option) => (
+          {item.options.map((option) => {
 
-            <div
-              key={option.name}
-              className="
-                flex
-                flex-col
-                gap-4
-                border-b
-                border-white/10
-                p-5
-                last:border-b-0
-                sm:flex-row
-                sm:items-center
-                sm:justify-between
-              "
-            >
+            const whatsappLink = createWhatsAppLink({
+              packageName: item.title,
+              optionName: option.name,
+              price: option.price,
+            });
 
-              <div>
+            return (
+              <div
+                key={option.name}
+                className="
+                  flex
+                  flex-col
+                  gap-4
+                  border-b
+                  border-white/10
+                  p-5
+                  last:border-b-0
+                  sm:flex-row
+                  sm:items-center
+                  sm:justify-between
+                "
+              >
 
-                <p className="text-sm font-bold">
-                  {option.name}
-                </p>
+                <div>
 
-                <p className="mt-1 text-[10px] uppercase tracking-wide text-white/25">
-                  Single package
-                </p>
+                  <p className="text-sm font-bold">
+                    {option.name}
+                  </p>
 
-              </div>
-
-
-              <div className="flex items-center justify-between gap-5">
-
-                <div className="whitespace-nowrap">
-
-                  <span className="text-2xl font-black">
-                    {option.price}
-                  </span>
-
-                  <span className="ml-1 text-[9px] font-bold text-white/30">
-                    BDT
-                  </span>
+                  <p className="mt-1 text-[10px] uppercase tracking-wide text-white/25">
+                    Single package
+                  </p>
 
                 </div>
 
+                <div className="flex items-center justify-between gap-5">
 
-                <Link
-                  href={`/contact?package=${encodeURIComponent(
-                    `${item.title} - ${option.name}`
-                  )}`}
-                  className="
-                    flex
-                    h-9
-                    items-center
-                    gap-2
-                    rounded-lg
-                    bg-white/[0.06]
-                    px-3
-                    text-[9px]
-                    font-bold
-                    tracking-wide
-                    text-white/60
-                    transition
-                    duration-300
-                    hover:bg-blue-500
-                    hover:text-white
-                  "
-                >
-                  BUY
+                  <div className="whitespace-nowrap">
 
-                  <FiArrowUpRight
-                    size={12}
+                    <span className="text-2xl font-black">
+                      {option.price}
+                    </span>
+
+                    <span className="ml-1 text-[9px] font-bold text-white/30">
+                      BDT
+                    </span>
+
+                  </div>
+
+                  {/* =================================================
+                      WHATSAPP BUY BUTTON
+                  ================================================= */}
+
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Buy ${item.title} ${option.name} via WhatsApp`}
                     className="
+                      flex
+                      h-9
+                      items-center
+                      gap-2
+                      rounded-lg
+                      bg-white/[0.06]
+                      px-3
+                      text-[9px]
+                      font-bold
+                      tracking-wide
+                      text-white/60
                       transition
-                      group-hover:translate-x-0.5
-                      group-hover:-translate-y-0.5
+                      duration-300
+                      hover:bg-blue-500
+                      hover:text-white
                     "
-                  />
+                  >
 
-                </Link>
+                    BUY
+
+                    <FiArrowUpRight
+                      size={12}
+                      className="
+                        transition
+                        group-hover:translate-x-0.5
+                        group-hover:-translate-y-0.5
+                      "
+                    />
+
+                  </a>
+
+                </div>
 
               </div>
-
-            </div>
-
-          ))}
+            );
+          })}
 
         </div>
 
@@ -947,3 +979,4 @@ function MembershipCard({ item }) {
     </article>
   );
 }
+

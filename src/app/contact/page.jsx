@@ -2,8 +2,10 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { motion } from "framer-motion";
+
 import {
   FiArrowLeft,
   FiArrowUpRight,
@@ -18,10 +20,39 @@ import {
 } from "react-icons/fi";
 
 /* =========================================================
+   MAP
+   ========================================================= */
+
+const LocationMap = dynamic(
+  () => import("@/components/LocationMap"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-[260px] w-full items-center justify-center rounded-2xl border border-white/10 bg-[#050A14]">
+        <div className="flex items-center gap-3">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-blue-500" />
+
+          <span className="text-[9px] font-bold tracking-[0.2em] text-white/30">
+            LOADING MAP
+          </span>
+        </div>
+      </div>
+    ),
+  }
+);
+
+/* =========================================================
    WHATSAPP NUMBER
    ========================================================= */
 
 const WHATSAPP_NUMBER = "8801844240483";
+
+/* =========================================================
+   GOOGLE MAPS
+   ========================================================= */
+
+const GOOGLE_MAPS_LINK =
+  "https://maps.app.goo.gl/E39BMbkKWRL7FBty7";
 
 /* =========================================================
    SOCIAL LINKS
@@ -29,7 +60,10 @@ const WHATSAPP_NUMBER = "8801844240483";
 
 const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/checkpoint_bd",
-  facebook: "https://www.facebook.com/profile.php?id=61591601052508",
+
+  facebook:
+    "https://www.facebook.com/profile.php?id=61591601052508",
+
   whatsapp: `https://wa.me/${WHATSAPP_NUMBER}`,
 };
 
@@ -39,6 +73,7 @@ const SOCIAL_LINKS = {
 
 const container = {
   hidden: {},
+
   show: {
     transition: {
       staggerChildren: 0.1,
@@ -55,6 +90,7 @@ const item = {
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
@@ -112,7 +148,7 @@ export default function ContactPage() {
 
   /* =======================================================
      INPUT CHANGE
-     ======================================================= */
+  ======================================================= */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -125,7 +161,7 @@ export default function ContactPage() {
 
   /* =======================================================
      WHATSAPP SUBMIT
-     ======================================================= */
+  ======================================================= */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -156,20 +192,41 @@ Sent from The Checkpoint website.
     window.open(whatsappURL, "_blank");
   };
 
+  /* =======================================================
+     GOOGLE MAPS
+  ======================================================= */
+
+  const handleDirections = () => {
+    window.open(
+      GOOGLE_MAPS_LINK,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  /* =======================================================
+     RETURN
+  ======================================================= */
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#030712] text-white">
+
       {/* =====================================================
           BACKGROUND
       ===================================================== */}
 
       <div className="pointer-events-none fixed inset-0">
+
         {/* Blue glow */}
+
         <div className="absolute left-[-200px] top-[15%] h-[500px] w-[500px] rounded-full bg-blue-600/[0.08] blur-[150px]" />
 
         {/* Bottom glow */}
+
         <div className="absolute bottom-[-200px] right-[-150px] h-[500px] w-[500px] rounded-full bg-blue-500/[0.06] blur-[150px]" />
 
         {/* Grid */}
+
         <div
           className="absolute inset-0 opacity-[0.025]"
           style={{
@@ -185,6 +242,7 @@ Sent from The Checkpoint website.
       ===================================================== */}
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pb-24 pt-32 sm:px-8 lg:px-10">
+
         {/* ===================================================
             BACK TO HOME
         =================================================== */}
@@ -225,9 +283,11 @@ Sent from The Checkpoint website.
           animate="show"
           className="mt-16 grid gap-10 lg:grid-cols-[1fr_380px] lg:items-end"
         >
+
           {/* LEFT */}
 
           <div>
+
             <motion.div
               variants={item}
               className="mb-6 flex items-center gap-3"
@@ -244,15 +304,20 @@ Sent from The Checkpoint website.
               className="max-w-5xl text-6xl font-black leading-[0.82] tracking-[-0.07em] sm:text-8xl lg:text-[9rem]"
             >
               LET&apos;S
+
               <br />
 
-              <span className="text-white/25">TALK.</span>
+              <span className="text-white/25">
+                TALK.
+              </span>
             </motion.h1>
+
           </div>
 
           {/* RIGHT */}
 
           <motion.div variants={item}>
+
             <p className="text-sm leading-7 text-slate-500 sm:text-base">
               Planning your next gaming session? Interested in a membership?
               Want to book the restaurant, gym or another experience?
@@ -262,7 +327,9 @@ Sent from The Checkpoint website.
               Send us a message and our team will help you get everything
               sorted.
             </p>
+
           </motion.div>
+
         </motion.section>
 
         {/* ===================================================
@@ -279,6 +346,7 @@ Sent from The Checkpoint website.
           }}
           className="mt-20 grid border-y border-white/10 sm:grid-cols-2 lg:grid-cols-4"
         >
+
           {contactInfo.map((contact, index) => {
             const Icon = contact.icon;
 
@@ -307,6 +375,7 @@ Sent from The Checkpoint website.
                   }
                 `}
               >
+
                 {/* Icon */}
 
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-blue-400 transition-all duration-500 group-hover:border-blue-500/30 group-hover:bg-blue-500 group-hover:text-white">
@@ -330,9 +399,11 @@ Sent from The Checkpoint website.
                 <p className="mt-2 text-xs leading-5 text-slate-600">
                   {contact.description}
                 </p>
+
               </motion.div>
             );
           })}
+
         </motion.section>
 
         {/* ===================================================
@@ -340,6 +411,7 @@ Sent from The Checkpoint website.
         =================================================== */}
 
         <section className="mt-20 grid gap-5 lg:grid-cols-[1fr_0.65fr]">
+
           {/* =================================================
               CONTACT FORM
           ================================================= */}
@@ -362,33 +434,47 @@ Sent from The Checkpoint website.
             }}
             className="rounded-[2rem] border border-white/10 bg-[#080F1C]/80 p-7 sm:p-10"
           >
+
             {/* FORM HEADER */}
 
             <div className="mb-10">
+
               <div className="mb-4 flex items-center gap-3">
-                <FiMessageCircle size={16} className="text-blue-500" />
+
+                <FiMessageCircle
+                  size={16}
+                  className="text-blue-500"
+                />
 
                 <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-blue-400">
                   Send a message
                 </span>
+
               </div>
 
               <h2 className="text-3xl font-black tracking-[-0.04em] sm:text-4xl">
                 HOW CAN WE
+
                 <br />
 
-                <span className="text-white/30">HELP YOU?</span>
+                <span className="text-white/30">
+                  HELP YOU?
+                </span>
               </h2>
+
             </div>
 
-            {/* =================================================
-                FORM
-            ================================================= */}
+            {/* FORM */}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-5"
+            >
+
               {/* NAME + PHONE */}
 
               <div className="grid gap-5 sm:grid-cols-2">
+
                 <Input
                   label="YOUR NAME"
                   name="name"
@@ -408,6 +494,7 @@ Sent from The Checkpoint website.
                   type="tel"
                   required
                 />
+
               </div>
 
               {/* EMAIL */}
@@ -425,6 +512,7 @@ Sent from The Checkpoint website.
               {/* INTEREST */}
 
               <div>
+
                 <label
                   htmlFor="interest"
                   className="mb-2 block text-[9px] font-bold tracking-[0.2em] text-white/40"
@@ -452,7 +540,11 @@ Sent from The Checkpoint website.
                     focus:border-blue-500/50
                   "
                 >
-                  <option value="" disabled>
+
+                  <option
+                    value=""
+                    disabled
+                  >
                     Select an option
                   </option>
 
@@ -484,13 +576,18 @@ Sent from The Checkpoint website.
                     Movie Theater
                   </option>
 
-                  <option value="Other">Other</option>
+                  <option value="Other">
+                    Other
+                  </option>
+
                 </select>
+
               </div>
 
               {/* MESSAGE */}
 
               <div>
+
                 <label
                   htmlFor="message"
                   className="mb-2 block text-[9px] font-bold tracking-[0.2em] text-white/40"
@@ -523,6 +620,7 @@ Sent from The Checkpoint website.
                     focus:bg-blue-500/[0.02]
                   "
                 />
+
               </div>
 
               {/* SUBMIT */}
@@ -549,21 +647,25 @@ Sent from The Checkpoint website.
                   hover:shadow-[0_0_40px_rgba(37,99,235,0.25)]
                 "
               >
+
                 SEND VIA WHATSAPP
 
                 <FiSend
                   size={15}
                   className="transition duration-300 group-hover:translate-x-1"
                 />
+
               </button>
 
-              {/* Small note */}
+              {/* NOTE */}
 
               <p className="text-center text-[9px] leading-5 text-white/20">
                 You&apos;ll be redirected to WhatsApp with your message
                 automatically prepared.
               </p>
+
             </form>
+
           </motion.div>
 
           {/* =================================================
@@ -588,17 +690,23 @@ Sent from The Checkpoint website.
             }}
             className="flex flex-col gap-5"
           >
-            {/* LOCATION CARD */}
 
-            <div className="group relative min-h-[300px] overflow-hidden rounded-[2rem] border border-white/10 bg-[#080F1C] p-7 sm:p-8">
+            {/* =================================================
+                LOCATION CARD
+            ================================================= */}
+
+            <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#080F1C] p-5 sm:p-6">
+
               {/* Glow */}
 
               <div className="absolute right-[-50px] top-[-50px] h-48 w-48 rounded-full bg-blue-600/10 blur-[70px]" />
 
               <div className="relative">
+
                 {/* Top */}
 
                 <div className="flex items-center justify-between">
+
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/10 text-blue-400">
                     <FiMapPin size={18} />
                   </div>
@@ -606,15 +714,19 @@ Sent from The Checkpoint website.
                   <span className="text-[9px] font-bold tracking-[0.2em] text-white/20">
                     LOCATION
                   </span>
+
                 </div>
 
                 {/* Heading */}
 
-                <h3 className="mt-12 text-3xl font-black tracking-[-0.04em]">
+                <h3 className="mt-8 text-3xl font-black tracking-[-0.04em]">
                   COME
+
                   <br />
 
-                  <span className="text-blue-500">FIND US.</span>
+                  <span className="text-blue-500">
+                    FIND US.
+                  </span>
                 </h3>
 
                 <p className="mt-4 max-w-xs text-sm leading-6 text-slate-500">
@@ -622,21 +734,116 @@ Sent from The Checkpoint website.
                   restaurant and fitness destination.
                 </p>
 
+                {/* =================================================
+                    CLICKABLE MAP
+                ================================================= */}
+
+                <div className="group/map relative mt-6 overflow-hidden rounded-2xl">
+
+                  <LocationMap />
+
+                  {/* Clickable overlay */}
+
+                  <a
+                    href={GOOGLE_MAPS_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open The Checkpoint location in Google Maps"
+                    className="
+                      absolute
+                      inset-0
+                      z-10
+                      flex
+                      items-center
+                      justify-center
+                      bg-black/0
+                      transition-all
+                      duration-300
+                      hover:bg-black/30
+                    "
+                  >
+
+                    <span
+                      className="
+                        translate-y-2
+                        rounded-xl
+                        border
+                        border-white/20
+                        bg-black/70
+                        px-4
+                        py-3
+                        text-[9px]
+                        font-black
+                        tracking-[0.15em]
+                        text-white
+                        opacity-0
+                        backdrop-blur-md
+                        transition-all
+                        duration-300
+                        group-hover/map:translate-y-0
+                        group-hover/map:opacity-100
+                      "
+                    >
+                      OPEN IN GOOGLE MAPS
+                      <span className="ml-2">↗</span>
+                    </span>
+
+                  </a>
+
+                </div>
+
+                {/* Address */}
+
+                <div className="mt-5 flex gap-3">
+
+                  <FiMapPin
+                    size={14}
+                    className="mt-1 shrink-0 text-blue-500"
+                  />
+
+                  <p className="text-xs leading-5 text-white/40">
+                    Bashundhara R/A, Block C,
+                    <br />
+                    Road 2, House 1/f,
+                    <br />
+                    Dhaka, Bangladesh 1229
+                  </p>
+
+                </div>
+
                 {/* Directions */}
 
-                <a
-                  href="https://maps.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/map mt-6 inline-flex items-center gap-2 text-[9px] font-bold tracking-[0.2em] text-white/50 transition hover:text-white"
+                <button
+                  type="button"
+                  onClick={handleDirections}
+                  className="
+                    group/map
+                    mt-5
+                    inline-flex
+                    items-center
+                    gap-2
+                    text-[9px]
+                    font-bold
+                    tracking-[0.2em]
+                    text-white/50
+                    transition
+                    hover:text-white
+                  "
                 >
+
                   GET DIRECTIONS
 
                   <FiArrowUpRight
                     size={13}
-                    className="transition group-hover/map:-translate-y-0.5 group-hover/map:translate-x-0.5"
+                    className="
+                      transition
+                      group-hover/map:-translate-y-0.5
+                      group-hover/map:translate-x-0.5
+                    "
                   />
-                </a>
+
+                </button>
+
               </div>
             </div>
 
@@ -645,11 +852,13 @@ Sent from The Checkpoint website.
             ================================================= */}
 
             <div className="rounded-[2rem] border border-white/10 bg-[#080F1C] p-7 sm:p-8">
+
               <p className="text-[9px] font-bold tracking-[0.25em] text-white/30">
                 FOLLOW THE CHECKPOINT
               </p>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
+
                 {/* INSTAGRAM */}
 
                 <SocialButton
@@ -673,9 +882,13 @@ Sent from The Checkpoint website.
                   label="WHATSAPP"
                   href={SOCIAL_LINKS.whatsapp}
                 />
+
               </div>
+
             </div>
+
           </motion.div>
+
         </section>
 
         {/* ===================================================
@@ -699,23 +912,29 @@ Sent from The Checkpoint website.
           }}
           className="relative mt-20 overflow-hidden rounded-[2rem] border border-blue-500/20 bg-blue-600 p-8 sm:p-12"
         >
+
           {/* Glow */}
 
           <div className="absolute right-[-100px] top-[-100px] h-[350px] w-[350px] rounded-full bg-white/10 blur-[100px]" />
 
           <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+
             {/* Text */}
 
             <div>
+
               <p className="text-[9px] font-bold tracking-[0.3em] text-white/60">
                 READY TO PLAY?
               </p>
 
               <h2 className="mt-3 text-4xl font-black tracking-[-0.05em] sm:text-6xl">
                 BOOK YOUR
+
                 <br />
+
                 EXPERIENCE.
               </h2>
+
             </div>
 
             {/* Button */}
@@ -741,15 +960,25 @@ Sent from The Checkpoint website.
                 hover:text-white
               "
             >
+
               BOOK NOW
 
               <FiArrowUpRight
                 size={16}
-                className="transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="
+                  transition
+                  duration-300
+                  group-hover:-translate-y-0.5
+                  group-hover:translate-x-0.5
+                "
               />
+
             </Link>
+
           </div>
+
         </motion.section>
+
       </div>
     </main>
   );
@@ -757,7 +986,7 @@ Sent from The Checkpoint website.
 
 /* =========================================================
    INPUT COMPONENT
-========================================================= */
+   ========================================================= */
 
 function Input({
   label,
@@ -770,6 +999,7 @@ function Input({
 }) {
   return (
     <div>
+
       <label
         htmlFor={name}
         className="mb-2 block text-[9px] font-bold tracking-[0.2em] text-white/40"
@@ -801,15 +1031,20 @@ function Input({
           focus:bg-blue-500/[0.02]
         "
       />
+
     </div>
   );
 }
 
 /* =========================================================
    SOCIAL BUTTON
-========================================================= */
+   ========================================================= */
 
-function SocialButton({ icon: Icon, label, href }) {
+function SocialButton({
+  icon: Icon,
+  label,
+  href,
+}) {
   return (
     <a
       href={href}
@@ -832,7 +1067,9 @@ function SocialButton({ icon: Icon, label, href }) {
         hover:bg-blue-500/[0.05]
       "
     >
+
       <div className="flex items-center gap-3">
+
         <Icon
           size={16}
           className="text-white/50 transition group-hover:text-blue-400"
@@ -841,6 +1078,7 @@ function SocialButton({ icon: Icon, label, href }) {
         <span className="text-[9px] font-bold tracking-[0.15em] text-white/50 group-hover:text-white">
           {label}
         </span>
+
       </div>
 
       <FiArrowUpRight
@@ -853,7 +1091,7 @@ function SocialButton({ icon: Icon, label, href }) {
           group-hover:text-blue-400
         "
       />
+
     </a>
   );
 }
-

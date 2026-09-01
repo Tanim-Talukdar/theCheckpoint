@@ -649,7 +649,7 @@ export default function Restaurant() {
               </h3>
 
               <Link
-                href="#menu"
+                href="/restaurant#menu"
                 className="
                   group
                   mt-7

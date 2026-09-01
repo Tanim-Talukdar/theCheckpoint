@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           <Link
-            href="#booking"
+            href="/contact"
             className="
               group flex shrink-0 items-center gap-3
               rounded-xl bg-blue-600
@@ -53,7 +53,7 @@ export default function Footer() {
               hover:bg-blue-500
             "
           >
-            BOOK YOUR EXPERIENCE
+            Contact Us For Booking
 
             <FiArrowUpRight
               size={18}
@@ -200,7 +200,7 @@ export default function Footer() {
             </div>
 
             <Link
-              href="#contact"
+              href="/contact"
               className="
                 mt-7 inline-flex items-center gap-2
                 text-sm font-semibold text-blue-500

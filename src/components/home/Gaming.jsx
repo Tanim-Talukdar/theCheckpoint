@@ -463,7 +463,7 @@ export default function Gaming() {
                   className="inline-block"
                 >
                   <Link
-                    href="#booking"
+                    href="/gaming#gamingmenu"
                     className="
                       group/btn
                       mt-7

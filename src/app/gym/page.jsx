@@ -120,7 +120,7 @@ export default function GymPage() {
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.6 }}
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2400&q=90"
+          src="/gym/gym2.jpeg"
           alt="The Checkpoint gym"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -378,21 +378,21 @@ export default function GymPage() {
             <div className="grid gap-4 sm:grid-cols-2">
 
               <Facility
-                image="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=85"
+                image="/gym/gym.jpeg"
                 icon={<FiActivity />}
                 title="GYM"
                 text="Strength, cardio and conditioning."
               />
 
               <Facility
-                image="https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?auto=format&fit=crop&w=1200&q=85"
+                image="/swimmingpool/swimmingpool.jpeg"
                 icon={<FiDroplet />}
                 title="POOL"
                 text="Swimming and aquatic fitness."
               />
 
               <Facility
-                image="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=85"
+                image="/gym/gym3.jpeg"
                 icon={<FiWind />}
                 title="STEAM"
                 text="Recovery after training."
