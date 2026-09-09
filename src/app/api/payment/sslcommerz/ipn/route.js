@@ -6,6 +6,7 @@ export const runtime = "nodejs";
 
 export async function POST(request) {
   try {
+    console.log("🔥 IPN ROUTE HIT");
     const formData = await request.formData();
 
     const tranId = formData.get("tran_id");
