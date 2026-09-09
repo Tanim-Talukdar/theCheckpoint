@@ -532,7 +532,7 @@ export default function MoviePage() {
               CATEGORY FILTER
           ================================================== */}
 
-          <div className="mt-10 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="mt-10 flex gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {categories.map((item) => {
               const active = category === item;
 
