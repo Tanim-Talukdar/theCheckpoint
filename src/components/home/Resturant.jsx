@@ -1,61 +1,51 @@
 "use client";
 
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FiArrowUpRight,
   FiCoffee,
-  FiClock,
-  FiUsers,
-  FiStar,
+  FiX,
+  FiMapPin,
+  FiPhone,
 } from "react-icons/fi";
 
-const highlights = [
+const menuImages = [
   {
-    icon: FiCoffee,
-    number: "01",
-    title: "GOOD FOOD",
-    text: "The perfect fuel before, during or after your gaming session.",
+    src: "/resturants/menufood.jpeg",
+    title: "FOOD MENU",
   },
   {
-    icon: FiUsers,
-    number: "02",
-    title: "GOOD COMPANY",
-    text: "Bring your squad, friends or family and enjoy the atmosphere.",
-  },
-  {
-    icon: FiClock,
-    number: "03",
-    title: "STAY A WHILE",
-    text: "Eat, talk, relax and enjoy your time at The Checkpoint.",
+    src: "/resturants/menudrinks.jpeg",
+    title: "DRINKS MENU",
   },
 ];
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
+const highlights = [
+  "FOOD",
+  "DRINKS",
+  "CAFE",
+  "HANGOUT",
+];
 
 const fadeUp = {
   hidden: {
     opacity: 0,
-    y: 35,
+    y: 25,
   },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
+      duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
 export default function Restaurant() {
+  const [selectedMenu, setSelectedMenu] = useState(null);
+
   return (
     <section
       id="restaurant"
@@ -67,8 +57,8 @@ export default function Restaurant() {
       "
     >
       {/* =====================================================
-          BACKGROUND EFFECTS
-      ===================================================== */}
+          BACKGROUND
+      ====================================================== */}
 
       <div
         className="
@@ -76,8 +66,8 @@ export default function Restaurant() {
           absolute
           -right-40
           top-20
-          h-[500px]
-          w-[500px]
+          h-[450px]
+          w-[450px]
           rounded-full
           bg-blue-600/[0.08]
           blur-[140px]
@@ -98,49 +88,56 @@ export default function Restaurant() {
         "
       />
 
-      {/* =====================================================
-          TOP LINE
-      ===================================================== */}
+      {/* Top line */}
 
-      <div className="h-px bg-blue-500/30" />
+      <div className="h-px bg-blue-500/25" />
 
       {/* =====================================================
-          MAIN CONTAINER
-      ===================================================== */}
+          CONTAINER
+      ====================================================== */}
 
-      <div className="relative mx-auto max-w-7xl px-6 py-28 sm:px-8 sm:py-36 lg:px-10">
+      <div
+        className="
+          relative
+          mx-auto
+          max-w-7xl
+          px-5
+          py-20
+          sm:px-8
+          sm:py-28
+          lg:px-10
+        "
+      >
 
         {/* =================================================
             HEADER
-        ================================================= */}
+        ================================================== */}
 
         <motion.div
-          variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{
             once: true,
             amount: 0.2,
           }}
+          variants={fadeUp}
           className="
-            grid
-            gap-10
-            lg:grid-cols-[1fr_0.7fr]
-            lg:items-end
+            flex
+            flex-col
+            justify-between
+            gap-5
+            sm:flex-row
+            sm:items-end
           "
         >
+          <div>
 
-          {/* LEFT */}
-
-          <motion.div variants={fadeUp}>
-
-            <div className="mb-6 flex items-center gap-3">
-
-              <span className="h-px w-10 bg-blue-500" />
+            <div className="mb-4 flex items-center gap-3">
+              <span className="h-px w-8 bg-blue-500" />
 
               <span
                 className="
-                  text-[10px]
+                  text-[9px]
                   font-black
                   uppercase
                   tracking-[0.3em]
@@ -149,367 +146,61 @@ export default function Restaurant() {
               >
                 The Checkpoint Kitchen
               </span>
-
             </div>
 
             <h2
               className="
-                max-w-4xl
-                text-5xl
+                text-[clamp(4rem,15vw,8rem)]
                 font-black
-                leading-[0.82]
-                tracking-[-0.06em]
-                sm:text-7xl
-                lg:text-8xl
+                leading-[0.75]
+                tracking-[-0.07em]
               "
             >
-              COME
-              <br />
-
-              <span className="text-white/20">
-                HUNGRY.
-              </span>
+              EAT
+              <span className="text-blue-500">.</span>
             </h2>
 
-          </motion.div>
+          </div>
 
-          {/* RIGHT */}
-
-          <motion.div variants={fadeUp}>
-
-            <div className="mb-4 flex items-center gap-2 text-blue-400">
-
-              <FiCoffee size={15} />
-
-              <span
-                className="
-                  text-[9px]
-                  font-black
-                  tracking-[0.25em]
-                "
-              >
-                FOOD · DRINKS · VIBES
-              </span>
-
-            </div>
-
-            <p
-              className="
-                max-w-md
-                text-sm
-                leading-7
-                text-white/45
-                sm:text-base
-              "
-            >
-              The game might be the reason you came in.
-              Great food is the reason you stay.
-            </p>
-
-          </motion.div>
-
+          <p
+            className="
+              max-w-xs
+              text-sm
+              leading-6
+              text-white/45
+              sm:text-right
+            "
+          >
+            Good food.
+            <br />
+            Good drinks.
+            <br />
+            Good vibes.
+          </p>
         </motion.div>
 
         {/* =================================================
-            MAIN SHOWCASE
-        ================================================= */}
+            MENU
+        ================================================== */}
 
         <div
           className="
-            mt-16
+            mt-12
             grid
-            gap-5
-            lg:grid-cols-[0.62fr_1.38fr]
+            gap-4
+            sm:mt-16
+            sm:grid-cols-2
           "
         >
 
-          {/* ===============================================
-              LEFT PANEL
-          =============================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -40,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-              relative
-              flex
-              min-h-[540px]
-              flex-col
-              justify-between
-              overflow-hidden
-              rounded-[2rem]
-              border
-              border-white/10
-              bg-[#07101D]
-              p-8
-              sm:p-10
-            "
-          >
-
-            {/* Glow */}
-
-            <div
-              className="
-                pointer-events-none
-                absolute
-                -right-24
-                -top-24
-                h-72
-                w-72
-                rounded-full
-                bg-blue-600/15
-                blur-[90px]
-              "
-            />
-
-            {/* Content */}
-
-            <div className="relative">
-
-              <motion.div
-                initial={{
-                  scale: 0.7,
-                  opacity: 0,
-                }}
-                whileInView={{
-                  scale: 1,
-                  opacity: 1,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  delay: 0.2,
-                  duration: 0.5,
-                }}
-                className="
-                  flex
-                  h-12
-                  w-12
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-blue-600
-                  shadow-[0_0_35px_rgba(37,99,235,0.25)]
-                "
-              >
-                <FiCoffee size={21} />
-              </motion.div>
-
-              <p
-                className="
-                  mt-12
-                  text-[9px]
-                  font-bold
-                  tracking-[0.3em]
-                  text-blue-400
-                "
-              >
-                MORE THAN A MEAL
-              </p>
-
-              <h3
-                className="
-                  mt-4
-                  text-4xl
-                  font-black
-                  leading-[0.86]
-                  tracking-[-0.05em]
-                  sm:text-5xl
-                "
-              >
-                EAT.
-                <br />
-                CHILL.
-                <br />
-                REPEAT.
-              </h3>
-
-              <p
-                className="
-                  mt-8
-                  max-w-sm
-                  text-sm
-                  leading-7
-                  text-white/40
-                "
-              >
-                From quick bites between matches to long
-                evenings with your people — the kitchen is
-                part of the experience.
-              </p>
-
-            </div>
-
-            {/* Bottom */}
-
-            <div className="relative">
-
-              <div className="mb-6 h-px bg-white/10" />
-
-              <div className="flex items-center justify-between">
-
-                <div>
-
-                  <p
-                    className="
-                      text-[8px]
-                      font-bold
-                      tracking-[0.25em]
-                      text-white/25
-                    "
-                  >
-                    THE CHECKPOINT
-                  </p>
-
-                  <p className="mt-1 text-xs font-semibold text-white/60">
-                    Your table is waiting.
-                  </p>
-
-                </div>
-
-                <Link
-                  href="#menu"
-                  className="
-                    group
-                    flex
-                    h-12
-                    w-12
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-white/10
-                    transition
-                    duration-300
-                    hover:border-blue-500
-                    hover:bg-blue-600
-                  "
-                >
-                  <FiArrowUpRight
-                    size={17}
-                    className="
-                      transition
-                      duration-300
-                      group-hover:-translate-y-0.5
-                      group-hover:translate-x-0.5
-                    "
-                  />
-                </Link>
-
-              </div>
-
-            </div>
-
-          </motion.div>
-
-          {/* ===============================================
-              IMAGE
-          =============================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-              group
-              relative
-              min-h-[540px]
-              overflow-hidden
-              rounded-[2rem]
-              border
-              border-white/10
-            "
-          >
-
-            <motion.img
-              initial={{
-                scale: 1.12,
-              }}
-              whileInView={{
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 1.2,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{
-                scale: 1.05,
-              }}
-              src="/view8.jpeg"
-              alt="Restaurant dining experience"
-              className="
-                absolute
-                inset-0
-                h-full
-                w-full
-                object-cover
-              "
-            />
-
-            {/* Overlay */}
-
-            <div
-              className="
-                absolute
-                inset-0
-                bg-gradient-to-t
-                from-black
-                via-black/30
-                to-black/10
-              "
-            />
-
-            {/* Blue tint */}
-
-            <div
-              className="
-                absolute
-                inset-0
-                bg-blue-900/10
-                mix-blend-multiply
-                transition
-                duration-700
-                group-hover:bg-blue-700/5
-              "
-            />
-
-            {/* Top label */}
-
-            <motion.div
+          {menuImages.map((menu, index) => (
+            <motion.button
+              key={menu.src}
+              type="button"
+              onClick={() => setSelectedMenu(menu)}
               initial={{
                 opacity: 0,
-                y: -15,
+                y: 30,
               }}
               whileInView={{
                 opacity: 1,
@@ -517,370 +208,420 @@ export default function Restaurant() {
               }}
               viewport={{
                 once: true,
+                amount: 0.2,
               }}
               transition={{
-                delay: 0.5,
+                duration: 0.7,
+                delay: index * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{
+                y: -5,
               }}
               className="
-                absolute
-                left-7
-                top-7
-              "
-            >
-
-              <div
-                className="
-                  rounded-full
-                  border
-                  border-white/20
-                  bg-black/30
-                  px-4
-                  py-2
-                  backdrop-blur-md
-                "
-              >
-
-                <span
-                  className="
-                    text-[9px]
-                    font-bold
-                    tracking-[0.25em]
-                    text-white
-                  "
-                >
-                  THE CHECKPOINT KITCHEN
-                </span>
-
-              </div>
-
-            </motion.div>
-
-            {/* Floating badge */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.8,
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-              }}
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                delay: 0.7,
-              }}
-              className="
-                absolute
-                right-7
-                top-7
-                hidden
-                items-center
-                gap-2
-                rounded-full
+                group
+                relative
+                overflow-hidden
+                rounded-2xl
                 border
-                border-white/15
-                bg-black/30
-                px-4
-                py-2
-                backdrop-blur-md
-                sm:flex
+                border-white/10
+                bg-[#07101D]
+                text-left
               "
             >
 
-              <FiStar
-                size={13}
-                className="text-blue-400"
-              />
+              {/* Image */}
 
-              <span
-                className="
-                  text-[9px]
-                  font-bold
-                  tracking-wider
-                  text-white
-                "
-              >
-                GOOD VIBES
-              </span>
+              <div className="relative aspect-[4/5] overflow-hidden">
 
-            </motion.div>
-
-            {/* Image content */}
-
-            <div
-              className="
-                absolute
-                bottom-0
-                left-0
-                right-0
-                p-7
-                sm:p-10
-              "
-            >
-
-              <p
-                className="
-                  text-[9px]
-                  font-bold
-                  tracking-[0.3em]
-                  text-blue-300
-                "
-              >
-                COME HUNGRY
-              </p>
-
-              <h3
-                className="
-                  mt-3
-                  max-w-xl
-                  text-3xl
-                  font-black
-                  tracking-[-0.04em]
-                  text-white
-                  sm:text-5xl
-                "
-              >
-                MADE FOR
-                <br />
-                THE MOMENT.
-              </h3>
-
-              <Link
-                href="/restaurant#menu"
-                className="
-                  group
-                  mt-7
-                  inline-flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  bg-white
-                  px-5
-                  py-3
-                  text-[10px]
-                  font-black
-                  tracking-wide
-                  text-black
-                  transition
-                  duration-300
-                  hover:bg-blue-500
-                  hover:text-white
-                "
-              >
-                VIEW THE MENU
-
-                <FiArrowUpRight
-                  size={14}
+                <motion.img
+                  src={menu.src}
+                  alt={`${menu.title} - The Checkpoint Bashundhara`}
+                  whileHover={{
+                    scale: 1.04,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                  }}
                   className="
-                    transition
-                    group-hover:-translate-y-0.5
-                    group-hover:translate-x-0.5
+                    h-full
+                    w-full
+                    object-cover
                   "
                 />
-              </Link>
 
-            </div>
+                {/* Overlay */}
 
-          </motion.div>
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-black/90
+                    via-black/10
+                    to-transparent
+                  "
+                />
+
+                {/* Open icon */}
+
+                <div
+                  className="
+                    absolute
+                    right-5
+                    top-5
+                    flex
+                    h-10
+                    w-10
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-white/20
+                    bg-black/30
+                    text-white
+                    backdrop-blur-md
+                    transition
+                    duration-300
+                    group-hover:border-blue-400
+                    group-hover:bg-blue-600
+                  "
+                >
+                  <FiArrowUpRight size={17} />
+                </div>
+
+                {/* Bottom */}
+
+                <div
+                  className="
+                    absolute
+                    bottom-0
+                    left-0
+                    right-0
+                    p-5
+                    sm:p-7
+                  "
+                >
+                  <p
+                    className="
+                      text-[8px]
+                      font-bold
+                      tracking-[0.3em]
+                      text-blue-300
+                    "
+                  >
+                    THE CHECKPOINT
+                  </p>
+
+                  <h3
+                    className="
+                      mt-2
+                      text-2xl
+                      font-black
+                      tracking-[-0.04em]
+                      sm:text-3xl
+                    "
+                  >
+                    {menu.title}
+                  </h3>
+
+                  <p
+                    className="
+                      mt-2
+                      text-[9px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.15em]
+                      text-white/50
+                    "
+                  >
+                    Tap to view
+                  </p>
+                </div>
+
+              </div>
+            </motion.button>
+          ))}
 
         </div>
 
         {/* =================================================
-            HIGHLIGHTS
-        ================================================= */}
+            TAGS
+        ================================================== */}
 
         <motion.div
-          variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{
             once: true,
-            amount: 0.2,
           }}
+          variants={fadeUp}
           className="
             mt-5
-            grid
-            border-y
-            border-white/10
-            sm:grid-cols-3
+            flex
+            flex-wrap
+            gap-2
           "
         >
-
-          {highlights.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <motion.div
-                key={item.title}
-                variants={fadeUp}
-                whileHover={{
-                  y: -4,
-                }}
-                className="
-                  group
-                  border-b
-                  border-white/10
-                  p-7
-                  transition
-                  duration-300
-                  hover:bg-white/[0.02]
-                  sm:border-b-0
-                  sm:border-r
-                  last:border-r-0
-                "
-              >
-
-                <div className="flex items-center justify-between">
-
-                  <Icon
-                    size={19}
-                    className="
-                      text-blue-500
-                      transition
-                      duration-300
-                      group-hover:scale-110
-                    "
-                  />
-
-                  <span
-                    className="
-                      text-[9px]
-                      font-bold
-                      tracking-[0.2em]
-                      text-white/20
-                    "
-                  >
-                    {item.number}
-                  </span>
-
-                </div>
-
-                <h4 className="mt-7 text-sm font-black tracking-wide">
-                  {item.title}
-                </h4>
-
-                <p
-                  className="
-                    mt-3
-                    max-w-xs
-                    text-xs
-                    leading-6
-                    text-white/35
-                  "
-                >
-                  {item.text}
-                </p>
-
-              </motion.div>
-            );
-          })}
-
+          {highlights.map((item) => (
+            <span
+              key={item}
+              className="
+                rounded-full
+                border
+                border-white/10
+                bg-white/[0.02]
+                px-4
+                py-2
+                text-[8px]
+                font-bold
+                uppercase
+                tracking-[0.15em]
+                text-white/45
+              "
+            >
+              {item}
+            </span>
+          ))}
         </motion.div>
 
         {/* =================================================
-            BOTTOM CTA
-        ================================================= */}
+            LOCATION / CONTACT
+        ================================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial="hidden"
+          whileInView="show"
           viewport={{
             once: true,
           }}
-          transition={{
-            duration: 0.7,
-          }}
+          variants={fadeUp}
           className="
-            mt-16
+            mt-12
             flex
             flex-col
-            justify-between
-            gap-6
+            gap-4
+            border-t
+            border-white/10
+            pt-6
             sm:flex-row
             sm:items-center
+            sm:justify-between
           "
         >
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
 
-            <div
-              className="
-                flex
-                h-10
-                w-10
-                items-center
-                justify-center
-                rounded-full
-                bg-blue-600
-                text-white
-                shadow-[0_0_25px_rgba(37,99,235,0.2)]
-              "
-            >
-              <FiStar size={15} />
-            </div>
+            <FiMapPin
+              size={16}
+              className="text-blue-400"
+            />
 
             <div>
+              <p
+                className="
+                  text-[8px]
+                  font-bold
+                  uppercase
+                  tracking-[0.2em]
+                  text-white/30
+                "
+              >
+                LOCATION
+              </p>
 
               <p
                 className="
-                  text-[9px]
-                  font-bold
-                  tracking-[0.25em]
-                  text-white/25
+                  mt-1
+                  text-xs
+                  font-semibold
+                  text-white/70
                 "
               >
-                THE CHECKPOINT
+                Bashundhara R/A, Dhaka
               </p>
-
-              <p className="mt-1 text-sm font-bold text-white/80">
-                Your table. Your squad. Your moment.
-              </p>
-
             </div>
 
           </div>
 
-          <Link
-            href="#booking"
-            className="
-              group
-              flex
-              w-fit
-              items-center
-              gap-3
-              text-xs
-              font-black
-              text-blue-400
-              transition
-              hover:text-blue-300
-            "
-          >
-            BOOK A TABLE
+          <div className="flex gap-2">
 
-            <FiArrowUpRight
-              size={16}
+            <a
+              href="https://maps.app.goo.gl/NV7X1epSC8Ry3wXC6"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
+                flex
+                items-center
+                gap-2
+                rounded-lg
+                border
+                border-white/10
+                bg-white/[0.02]
+                px-4
+                py-2.5
+                text-[8px]
+                font-bold
+                uppercase
+                tracking-[0.1em]
+                text-white/60
                 transition
-                duration-300
-                group-hover:-translate-y-0.5
-                group-hover:translate-x-0.5
+                hover:border-blue-500/40
+                hover:text-white
               "
-            />
+            >
+              <FiMapPin size={12} />
+              MAP
+            </a>
 
-          </Link>
+            <a
+              href="tel:+8801844240483"
+              className="
+                flex
+                items-center
+                gap-2
+                rounded-lg
+                border
+                border-white/10
+                bg-white/[0.02]
+                px-4
+                py-2.5
+                text-[8px]
+                font-bold
+                uppercase
+                tracking-[0.1em]
+                text-white/60
+                transition
+                hover:border-blue-500/40
+                hover:text-white
+              "
+            >
+              <FiPhone size={12} />
+              CALL
+            </a>
+
+          </div>
 
         </motion.div>
 
       </div>
+
+      {/* =====================================================
+          MENU MODAL
+      ====================================================== */}
+
+      <AnimatePresence>
+        {selectedMenu && (
+          <motion.div
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+            className="
+              fixed
+              inset-0
+              z-[100]
+              flex
+              items-center
+              justify-center
+              bg-black/90
+              p-4
+              backdrop-blur-md
+            "
+            onClick={() => setSelectedMenu(null)}
+          >
+
+            {/* Modal */}
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.94,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.94,
+                y: 20,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
+              onClick={(e) => e.stopPropagation()}
+              className="
+                relative
+                max-h-[94vh]
+                max-w-5xl
+                overflow-hidden
+                rounded-2xl
+                border
+                border-white/15
+                bg-[#030712]
+                shadow-2xl
+              "
+            >
+
+              {/* Close */}
+
+              <button
+                type="button"
+                onClick={() => setSelectedMenu(null)}
+                aria-label="Close menu"
+                className="
+                  absolute
+                  right-4
+                  top-4
+                  z-10
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/20
+                  bg-black/60
+                  text-white
+                  backdrop-blur-md
+                  transition
+                  hover:bg-white/10
+                "
+              >
+                <FiX size={19} />
+              </button>
+
+              {/* Menu image */}
+
+              <div className="max-h-[94vh] overflow-auto">
+                <img
+                  src={selectedMenu.src}
+                  alt={selectedMenu.title}
+                  className="
+                    block
+                    h-auto
+                    max-h-[94vh]
+                    w-auto
+                    max-w-full
+                    object-contain
+                  "
+                />
+              </div>
+
+            </motion.div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -1,11 +1,12 @@
 
 
 
-import Features from "@/components/home/Features";
+import Features from "@/components/home/packeges";
 import Gaming from "@/components/home/Gaming";
 import Hero from "@/components/home/Hero";
 import Resturant from "@/components/home/Resturant";
-import Gym from "@/components/home/Gym";
+
+import ContactSection from "@/components/home/Contact";
 
 /* =========================================================
    HOMEPAGE SEO
@@ -181,13 +182,13 @@ export default function Home() {
     <main>
       <Hero />
 
-      <Features />
 
       <Gaming />
 
       <Resturant />
 
-      <Gym />
+      <Features />
+      <ContactSection/>
     </main>
   );
 }

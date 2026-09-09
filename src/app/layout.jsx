@@ -2,6 +2,7 @@
 import Navbar from "@/components/layout/Navbar";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
 export const metadata = {
   metadataBase: new URL("https://www.checkpoint.place/"),
@@ -243,7 +244,7 @@ export default function RootLayout({ children }) {
       "Swimming Pool",
     ],
   };
-
+  
   return (
     <html lang="en">
       <head>
@@ -258,14 +259,11 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-
-      <body>
-        <Navbar />
-
-        {children}
-
-        <Footer />
-      </body>
+<body>
+  <ConditionalLayout>
+    {children}
+  </ConditionalLayout>
+</body>
     </html>
   );
 }
