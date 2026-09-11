@@ -171,6 +171,20 @@ export async function POST(request) {
             showtimeId,
             hallId,
 
+            movieSnapshot: {
+              title: movie.title,
+              poster: movie.poster || "",
+              backdrop: movie.backdrop || "",
+              duration: movie.duration || 0,
+              rating: movie.rating || 0,
+            },
+
+            showtimeSnapshot: {
+              date: showtime.date,
+              startTime: showtime.startTime,
+              ticketPrice: showtime.ticketPrice,
+            },
+
             seats: uniqueSeats,
 
             customer: {
@@ -185,12 +199,23 @@ export async function POST(request) {
             bookingStatus: "pending",
 
             expiresAt: new Date(
-              Date.now() + 15 * 60 * 1000
+              Date.now() + 10 * 60 * 1000
             ),
           },
         ],
         { session }
       );
+      console.log("SNAPSHOT TEST", {
+  movieSnapshot: {
+    title: movie.title,
+    poster: movie.poster || "",
+  },
+  showtimeSnapshot: {
+    date: showtime.date,
+    startTime: showtime.startTime,
+    ticketPrice: showtime.ticketPrice,
+  },
+});
 
       createdBooking = booking;
     });

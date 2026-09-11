@@ -8,10 +8,49 @@ const BookingSchema = new mongoose.Schema(
       required: true,
     },
 
+    movieSnapshot: {
+      title: {
+        type: String,
+        required: true,
+      },
+      poster: {
+        type: String,
+        default: "",
+      },
+      backdrop: {
+        type: String,
+        default: "",
+      },
+      duration: {
+        type: Number,
+        default: 0,
+      },
+      rating: {
+        type: Number,
+        default: 0,
+      },
+    },
+
     showtimeId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Showtime",
       required: true,
+    },
+
+    showtimeSnapshot: {
+      date: {
+        type: String,
+        required: true,
+      },
+      startTime: {
+        type: String,
+        required: true,
+      },
+      ticketPrice: {
+        type: Number,
+        required: true,
+        min: 0,
+      },
     },
 
     hallId: {
@@ -61,16 +100,16 @@ const BookingSchema = new mongoose.Schema(
     },
 
     payment: {
-  tranId: {
-    type: String,
-    unique: true,
-    sparse: true,
-  },
-  valId: String,
-  bankTranId: String,
-  cardType: String,
-  paymentMethod: String,
-},
+      tranId: {
+        type: String,
+        unique: true,
+        sparse: true,
+      },
+      valId: String,
+      bankTranId: String,
+      cardType: String,
+      paymentMethod: String,
+    },
 
     paymentStatus: {
       type: String,
@@ -84,10 +123,9 @@ const BookingSchema = new mongoose.Schema(
       default: "pending",
     },
 
-    // Pending booking expires after a limited time
     expiresAt: {
       type: Date,
-      default: () => new Date(Date.now() + 15 * 60 * 1000),
+      default: () => new Date(Date.now() + 10 * 60 * 1000),
     },
   },
   {
@@ -108,7 +146,6 @@ BookingSchema.index(
 );
 
 // Prevent the same seat from being booked twice
-// for the same showtime.
 BookingSchema.index(
   { showtimeId: 1, seats: 1 },
   { unique: true }

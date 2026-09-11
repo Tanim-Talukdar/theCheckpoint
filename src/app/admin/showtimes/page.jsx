@@ -1010,7 +1010,7 @@ export default function ShowtimesPage() {
                         .toISOString()
                         .split("T")[0]
                     }
-                    className="h-12 w-full rounded-xl border border-white/[0.08] bg-[#050A14] px-4 text-sm text-white outline-none transition focus:border-blue-500/50"
+                    className="h-12 w-full rounded-xl border border-white/[0.08] bg-[#050A14] px-4 text-sm text-white outline-none transition focus:border-blue-500/50 [color-scheme:dark]"
                   />
 
                 </div>
@@ -1031,7 +1031,7 @@ export default function ShowtimesPage() {
                     onChange={
                       handleChange
                     }
-                    className="h-12 w-full rounded-xl border border-white/[0.08] bg-[#050A14] px-4 text-sm text-white outline-none transition focus:border-blue-500/50"
+                    className="h-12 w-full rounded-xl border border-white/[0.08] bg-[#050A14] px-4 text-sm text-white outline-none transition focus:border-blue-500/50 [color-scheme:dark]"
                   />
 
                 </div>

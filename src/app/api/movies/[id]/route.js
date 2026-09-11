@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { z } from "zod";
+import Showtime from "@/models/showtime";
 
 import { connectDB } from "@/lib/mongodb";
 import Movie from "@/models/movie";
@@ -178,20 +179,24 @@ export async function DELETE(request, { params }) {
 
     const movie = await Movie.findByIdAndDelete(id);
 
-    if (!movie) {
-      return NextResponse.json(
-        {
-          success: false,
-          message: "Movie not found",
-        },
-        { status: 404 }
-      );
-    }
+if (!movie) {
+  return NextResponse.json(
+    {
+      success: false,
+      message: "Movie not found",
+    },
+    { status: 404 }
+  );
+}
 
-    return NextResponse.json({
-      success: true,
-      message: "Movie deleted successfully",
-    });
+await Showtime.deleteMany({
+  movieId: id,
+});
+
+return NextResponse.json({
+  success: true,
+  message: "Movie and related showtimes deleted successfully",
+});
   } catch (error) {
     console.error("DELETE movie error:", error);
 

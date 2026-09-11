@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -46,7 +45,7 @@ const querySchema = z.object({
 
 export async function GET(request) {
   try {
-    // Check admin authentication
+    // Admin authentication
     const auth = await requireAdmin();
 
     if (!auth.authenticated) {
@@ -157,7 +156,7 @@ export async function GET(request) {
       Booking.find(filter)
         .populate(
           "movieId",
-          "title poster duration rating"
+          "title poster backdrop duration rating"
         )
         .populate(
           "showtimeId",
@@ -165,7 +164,7 @@ export async function GET(request) {
         )
         .populate(
           "hallId",
-          "name capacity"
+          "name capacity rows seatsPerRow seats"
         )
         .sort({
           createdAt: -1,
@@ -176,6 +175,24 @@ export async function GET(request) {
 
       Booking.countDocuments(filter),
     ]);
+
+    // Use snapshots for historical data.
+    // Fall back to populated references for older bookings.
+    const formattedPayments = payments.map(
+      (booking) => ({
+        ...booking,
+
+        movie:
+          booking.movieSnapshot ||
+          booking.movieId ||
+          null,
+
+        showtime:
+          booking.showtimeSnapshot ||
+          booking.showtimeId ||
+          null,
+      })
+    );
 
     // Overall statistics
     const statsResult = await Booking.aggregate([
@@ -277,7 +294,7 @@ export async function GET(request) {
     return NextResponse.json({
       success: true,
 
-      payments,
+      payments: formattedPayments,
 
       pagination: {
         page,

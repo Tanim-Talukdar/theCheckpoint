@@ -36,7 +36,54 @@ export async function GET(request) {
 
     const movieId = searchParams.get("movieId");
 
-    const filter = movieId ? { movieId } : {};
+    const now = new Date();
+
+    // Bangladesh local date/time
+    const bangladeshDate = new Intl.DateTimeFormat(
+      "en-CA",
+      {
+        timeZone: "Asia/Dhaka",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }
+    ).format(now);
+
+    const bangladeshTime = new Intl.DateTimeFormat(
+      "en-GB",
+      {
+        timeZone: "Asia/Dhaka",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }
+    ).format(now);
+
+    const filter = {
+      date: {
+        $gte: bangladeshDate,
+      },
+    };
+
+    // If a movieId is provided
+    if (movieId) {
+      filter.movieId = movieId;
+    }
+
+    // For today's showtimes, only allow future times
+    filter.$or = [
+      {
+        date: {
+          $gt: bangladeshDate,
+        },
+      },
+      {
+        date: bangladeshDate,
+        startTime: {
+          $gt: bangladeshTime,
+        },
+      },
+    ];
 
     const showtimes = await Showtime.find(filter)
       .populate(

@@ -11,21 +11,21 @@ export function proxy(request) {
 
   const token = request.cookies.get("admin_session")?.value;
 
-  // No login cookie → 404
+  // No login cookie → show global 404 page
   if (!token) {
-    return new NextResponse("Not Found", {
-      status: 404,
-    });
+    return NextResponse.rewrite(
+      new URL("/page-does-not-exist", request.url)
+    );
   }
 
   // Verify JWT
   const admin = verifyAdminToken(token);
 
-  // Invalid/expired/tampered token → 404
+  // Invalid/expired/tampered token → show global 404 page
   if (!admin || admin.role !== "admin" || !admin.adminId) {
-    const response = new NextResponse("Not Found", {
-      status: 404,
-    });
+    const response = NextResponse.rewrite(
+      new URL("/page-does-not-exist", request.url)
+    );
 
     response.cookies.delete("admin_session");
 
